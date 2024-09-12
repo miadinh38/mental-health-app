@@ -1,8 +1,7 @@
-import React from "react";
 import Image from "next/image";
 import "./style.css"
 
-const SimplePage = ()  => {
+const HomePage = ()  => {
     return (
         <div className="wrapper">
         <nav className="navbar">
@@ -34,4 +33,4 @@ const SimplePage = ()  => {
     )
 
 }
-export default SimplePage
+export default HomePage
