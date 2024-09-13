@@ -46,7 +46,7 @@ const HomePage = () => {
             <div className="text-center mt-12">
                 <div className="text-center">
                     <h1 className="text-black text-6xl font-bold w-[900px] mx-auto">
-                        Welcome to our page
+                        Welcome to our Mental Health page 
                     </h1>
                     <h3 className="text-black text-base  mx-auto font-style: italic">
                         A safe, supportive, compassionate environment made with love.
