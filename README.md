@@ -13,7 +13,7 @@ cd backend
 npm install
 ```
 
-### Create The Databse
+### Create database
 
 Use the `psql -U root -h localhost -p 5432 -d teenvent` command to login to the PostgreSQL server with the username `root` and the password `secret`. This command **MUST** be run in a vagrant terminal, we are using the PostgreSQL installation provided in the vagrant environment. M1/M2 and WSL2 users can execute this command in their terminal.
 
@@ -32,6 +32,14 @@ DB_PORT=5432
 ### Start the development server
 ```bash
 npm run dev
+```
+
+### Reset database
+
+To reset the database and seed it with initial data, run the following command:
+
+```bash
+npm run db:reset
 ```
 
 Use the browser to navigate to http://localhost:8080.
