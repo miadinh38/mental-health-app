@@ -37,7 +37,7 @@ sequelize
   })
   .then(() => {
     console.log('Sync models');
-    app.listen(port, () => {
+    app.listen(PORT, () => {
       console.log(`Server listen on http://localhost:${port}`);
     });
   })
