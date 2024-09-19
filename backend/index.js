@@ -2,6 +2,8 @@ import express from "express";
 import * as dotenv from  "dotenv";
 import cors from "cors";
 import helmet from "helmet";
+import { sequelize } from './src/db/dbConfig.js';
+import { User } from './src/db/models.js';
 
 dotenv.config();
 
@@ -26,3 +28,19 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`)
 });
+
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Connection success');
+    return sequelize.sync();
+  })
+  .then(() => {
+    console.log('Sync models');
+    app.listen(port, () => {
+      console.log(`Server listen on http://localhost:${port}`);
+    });
+  })
+  .catch((error) => {
+    console.error('Connection fail', error);
+  });
