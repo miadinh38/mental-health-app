@@ -1,3 +1,5 @@
+import Button from "../components/Button";
+
 export default function Home() {
   return (
     <div
@@ -10,21 +12,27 @@ export default function Home() {
       <div className="text-center flex flex-col justify-center items-center mt-20">
         <div className="text-center">
           <h1 className="text-black text-6xl font-bold w-[900px] mx-auto">
-            Welcome to our page
+            Welcome to TeenVent
           </h1>
           <h3 className="text-black text-base mx-auto font-style: italic">
             A safe, supportive, compassionate environment made with love.
           </h3>
         </div>
+        
+        <div className="mt-5 flex gap-5">
+          <Button
+            type='button'
+            title='Explore more'
+            variant='btn_white'
+          />
 
-        <div className="mt-5">
-          <button className="px-5 py-2 bg-blue-500 text-white border-none cursor-pointer hover:bg-blue-700 mr-3">
-            Explore more
-          </button>
-          <button className="px-5 py-2 bg-blue-500 text-white border-none cursor-pointer hover:bg-blue-700">
-            Subscribe
-          </button>
+          <Button
+            type='button'
+            title='Subcribe'
+            variant='btn_white'
+          />
         </div>
+
       </div>
     </div>
   );
