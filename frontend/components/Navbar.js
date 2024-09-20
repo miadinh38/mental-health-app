@@ -9,12 +9,12 @@ const Navbar = () => {
         className="flex "
         src="/teenvent-logo.png"
         alt="Teenvent logo"
-        width={55}
-        height={55}
+        width={150}
+        height={20}
         priority
       />
 
-      <ul className="flex flex-1 justify-start h-full pl-12 gap-12">
+      <ul className="flex flex-1 justify-start h-full pl-16 gap-12">
         {["home", "about", "services", "contact"].map((label, index) => (
           <Link
             key={index}
