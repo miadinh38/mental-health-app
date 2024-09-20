@@ -110,7 +110,7 @@ body {
 
   /* The button color is subject to change */
   .btn_white { 
-    @apply border-white bg-white px-8 py-3 text-green-50
+    @apply border-white bg-white px-8 py-3 text-green-800 hover:drop-shadow-xl
   }
   .btn_white_text  { 
     @apply border-white bg-white px-8 py-3 text-gray-90
