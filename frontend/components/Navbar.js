@@ -1,44 +1,42 @@
 import Image from "next/image";
-
+import Link from "next/link";
+import Button from "./Button";
 
 const Navbar = () => {
   return (
-    <nav className="flex justify-between items-center bg-zinc-400 text-xl p-4">
+    <nav className="flex justify-between items-center text-xl py-2 px-8">
       <Image
-        className="dark:invert"
-        src="https://skillhat.ca/wp-content/uploads/2023/06/skillhat-whitelogo.png"
-        alt="Next.js logo"
-        width={180}
-        height={38}
+        className="flex "
+        src="/teenvent-logo.png"
+        alt="Teenvent logo"
+        width={55}
+        height={55}
         priority
       />
-      <ul className="flex list-none">
-        <li className="ml-4">
-          <a href="/" className="text-black no-underline hover:underline">
-            Home
-          </a>
-        </li>
-        <li className="ml-4">
-          <a href="/about" className="text-black no-underline hover:underline">
-            About
-          </a>
-        </li>
-        <li className="ml-4">
-          <a
-            href="/services"
-            className="text-black no-underline hover:underline"
+
+      <ul className="flex flex-1 justify-start h-full pl-12 gap-12">
+        {["home", "about", "services", "contact"].map((label, index) => (
+          <Link
+            key={index}
+            href={label === "home" ? `/` : `${label}`}
+            className="capitalize regular-18 text-gray-600 flexCenter cursor-point 
+            transition-all hover:font-bold"
           >
-            Services
-          </a>
-        </li>
-        <li className="ml-4">
-          <a
-            href="/feedback"
-            className="text-black no-underline hover:underline"
-          >
-            Feedback
-          </a>
-        </li>
+            {label}
+          </Link>
+        ))}
+      </ul>
+
+      <ul className="flex gap-3">
+        {["login", "register"].map((button, index) => (
+          <Link key={index} href={`${button}`}>
+            <Button
+              type="button"
+              title={`${button}`}
+              variant="btn_dark_green capitalize"
+            />
+          </Link>
+        ))}
       </ul>
     </nav>
   );
