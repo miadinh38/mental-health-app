@@ -2,8 +2,7 @@ import express from "express";
 import * as dotenv from "dotenv";
 import cors from "cors";
 import helmet from "helmet";
-// import { sequelize } from './src/db/dbConfig.js';
-// import { User } from './src/db/models.js';
+
 
 dotenv.config();
 
@@ -29,6 +28,11 @@ app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`)
 });
 
+
+
+
+// import { sequelize } from './src/db/dbConfig.js';
+// import { User } from './src/db/models.js';
 
 //     });
 // sequelize
