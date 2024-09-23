@@ -15,18 +15,3 @@ const db = new Pool(dbParams);
 
 export default db;
 
-// import { Sequelize } from 'sequelize';
-
-
-
-// const database = process.env.DB_NAME;
-// const username = process.env.DB_USER;
-// const password = process.env.DB_PASSWORD;
-// const host = process.env.DB_HOST;
-
-// export const sequelize = new Sequelize(database, username, password, {
-//   host: host,
-//   port: 5432,
-//   dialect: 'postgres',
-// });
-
