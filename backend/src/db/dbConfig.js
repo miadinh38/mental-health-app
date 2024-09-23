@@ -1,6 +1,8 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
 import pg from "pg";
+
+
 const { Pool } = pg;
 
 const dbParams = {
@@ -12,6 +14,6 @@ const dbParams = {
 }
 
 const db = new Pool(dbParams);
-
+console.log("this is working: "+db)
 export default db;
 

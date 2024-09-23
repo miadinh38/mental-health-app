@@ -32,22 +32,3 @@ app.listen(PORT, () => {
 
 
 
-// import { sequelize } from './src/db/dbConfig.js';
-// import { User } from './src/db/models.js';
-
-//     });
-// sequelize
-//   .authenticate()
-//   .then(() => {
-//     console.log('Connection success');
-//     return sequelize.sync();
-//   })
-//   .then(() => {
-//     console.log('Sync models');
-//     app.listen(PORT, () => {
-//       console.log(`Server listening on http://localhost:${PORT}`);
-//     });
-//   })
-//   .catch((error) => {
-//     console.error('Connection fail', error);
-//   });
