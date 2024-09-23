@@ -1,4 +1,8 @@
 const Feedback = () => {
-  return <div>Feedback</div>;
+  return (
+    <div className="h-dvh">
+      Feedback
+    </div>
+  );
 };
 export default Feedback;

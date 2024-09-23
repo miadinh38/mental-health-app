@@ -1,5 +1,26 @@
-# Mental Health App
-With personalized recommendations and evidence-based tools, the app aims to help individuals manage their mental health, set and achieve wellness goals, and foster a balanced lifestyle. Whether you're seeking daily self-care practices or professional support, the Mental Health App provides a convenient and accessible solution for maintaining mental well-being and improving overall quality of life.
+# TeenVent
+With personalized recommendations and evidence-based tools, the app aims to help individuals manage their mental health, set and achieve wellness goals, and foster a balanced lifestyle. Whether you're seeking daily self-care practices or professional support, TeenVent provides a convenient and accessible solution for maintaining mental well-being and improving overall quality of life.
+
+# Teck stack:
+
+This project is built using the following technologies:
+
+- **Backend**: 
+  - Node.js
+  - Express.js
+
+- **Frontend**: 
+  - Next.js
+  - Tailwind CSS
+
+- **Database**: 
+  - PostgreSQL
+
+- **Deployment**: 
+  
+  Vercel (for automatic deployment of both frontend and backend)
+    - **Frontend**: [teenvent.vercel.app](https://teenvent.vercel.app/)
+    - **Backend**: [teenvent-server.vercel.app](https://teenvent-server.vercel.app/)
 
 # Setup
 ## Backend

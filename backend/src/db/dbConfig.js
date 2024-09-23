@@ -4,6 +4,9 @@ import pg from "pg";
 
 
 const { Pool } = pg;
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const dbParams = {
   host: process.env.DB_HOST,

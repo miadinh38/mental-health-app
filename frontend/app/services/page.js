@@ -1,4 +1,8 @@
 const Services = () => {
-  return <div>Services</div>;
+  return (
+    <div className="h-dvh">
+      Services
+    </div>
+  );
 };
 export default Services;
