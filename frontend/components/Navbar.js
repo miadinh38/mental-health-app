@@ -6,11 +6,10 @@ const Navbar = () => {
   return (
     <nav className="flex justify-between items-center text-xl py-2 px-8">
       <Image
-        className="flex "
         src="/teenvent-logo.png"
         alt="Teenvent logo"
         width={150}
-        height={20}
+        height={32}
         priority
       />
 
