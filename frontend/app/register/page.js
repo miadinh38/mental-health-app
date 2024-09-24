@@ -14,11 +14,12 @@ const Register = () => {
     gender: "",
   });
 
-  let defaultInputCheck = {
+  const defaultInputCheck = {
     validName: true,
     validEmail: true,
     validPassword: true,
     validConfirmPassword: true,
+    validBirthday: true,
   };
 
   const [checkInputValid, setCheckInputValid] = useState(defaultInputCheck);
@@ -31,14 +32,14 @@ const Register = () => {
     if (!name) {
       toast.error("Your name is required!");
       setCheckInputValid({ ...defaultInputCheck, validName: false });
-      console.log("Name check", checkInputValid);
+      // console.log("Name check", checkInputValid);
       return false;
     }
 
     if (!email) {
       toast.error("Email is required!");
       setCheckInputValid({ ...defaultInputCheck, validEmail: false });
-      console.log("Email check", checkInputValid);
+      // console.log("Email check", checkInputValid);
       return false;
     }
 
@@ -63,8 +64,9 @@ const Register = () => {
 
     const today = new Date();
     const selectedDay = new Date(birthday);
-    if(selectedDay > today) {
+    if (selectedDay > today) {
       toast.error("Birthday is not valid");
+      setCheckInputValid({ ...defaultInputCheck, validBrthday: false });
       return false;
     }
 
@@ -101,8 +103,8 @@ const Register = () => {
         return "validPassword";
       case "confirmPassword":
         return "validConfirmPassword";
-      case "phone":
-        return "validPhone";
+      case "birthday":
+        return "validBirthday";
       default:
         return fieldName;
     }
@@ -110,20 +112,9 @@ const Register = () => {
 
   const handleRegister = (event) => {
     event.preventDefault();
-    const { name, email, password, confirmPassword, birthday, gender, phone } =
-      formData;
-
     let checkValid = isValidInputs();
-    let userData = {
-      name,
-      email,
-      password,
-      confirmPassword,
-      birthday,
-      gender,
-      phone,
-    };
-    console.log(`>>Check user data: `, userData);
+
+    console.log(`>>Check user data: `, formData);
   };
 
   return (
@@ -251,7 +242,13 @@ const Register = () => {
                 <label className="block mb-2 text-sm font-medium text-gray-900">
                   Birthday
                   <input
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5"
+                    className={`${
+                      checkInputValid.validBirthday
+                        ? "border-gray-300"
+                        : "border-red-500"
+                    } 
+                    bg-gray-50 border border-gray-300 text-gray-900
+                    sm:text-sm rounded-lg block w-full p-2.5`}
                     id="birthday"
                     name="birthday"
                     type="date"
