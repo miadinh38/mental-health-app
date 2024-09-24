@@ -33,11 +33,11 @@ router.get('/users/:id', (req, res) => {
 
 // Route to create a new user
 router.post('/users', (req, res) => {
-  const { name } = req.body
+  const { username,email,password } = req.body
 
   db.query(
-    'INSERT INTO users (name) VALUES ($1) RETURNING *',
-    [name],
+    'INSERT INTO users (username, email, password) VALUES ($1,$2,$3) RETURNING *',
+    [username, email, password],
     (err, result) => {
       if (!err) {
         res.status(201).json(result.rows[0]) // Send created user
@@ -72,11 +72,11 @@ router.delete('/users/:id', (req, res) => {
 // Route to update a user by ID
 router.put('/users/:id', (req, res) => {
   const { id } = req.params
-  const { name } = req.body
+  const { username } = req.body
 
   db.query(
-    'UPDATE users SET name = $1 WHERE id = $2 RETURNING *',
-    [name, id],
+    'UPDATE users SET username = $1 WHERE id = $2 RETURNING *',
+    [username, id],
     (err, result) => {
       if (!err) {
         if (result.rows.length > 0) {
