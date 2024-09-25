@@ -139,8 +139,9 @@ const Register = () => {
       console.log(`>>Check user data: `, res.data);
 
       if(data.errCode === 0) {
-        toast.success(data.errMessage)
-        router.push('/')
+        toast.success(data.errMessage);
+        localStorage.setItem("token", data.token);
+        router.push('/');
       } else {
         toast.error(data.errMessage)
         setCheckInputValid({ ...defaultInputCheck, validEmail: false });
