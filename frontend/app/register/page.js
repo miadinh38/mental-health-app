@@ -2,8 +2,13 @@
 import Link from "next/link";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { registerUserService } from "../services/authService";
+import { useRouter } from 'next/navigation';
+
 
 const Register = () => {
+  const router = useRouter();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -20,6 +25,7 @@ const Register = () => {
     validPassword: true,
     validConfirmPassword: true,
     validBirthday: true,
+    validPhone: true
   };
 
   const [checkInputValid, setCheckInputValid] = useState(defaultInputCheck);
@@ -27,7 +33,7 @@ const Register = () => {
   // Check inputs validation
   const isValidInputs = () => {
     setCheckInputValid(defaultInputCheck);
-    const { name, email, password, confirmPassword, birthday } = formData;
+    const { name, email, password, confirmPassword, birthday, phone } = formData;
 
     if (!name) {
       toast.error("Your name is required!");
@@ -43,6 +49,7 @@ const Register = () => {
       return false;
     }
 
+    // Regular expression to validate email format
     let regx = /\S+@\S+\.\S+/;
     if (!regx.test(email)) {
       toast.error("Please enter a valid email address");
@@ -66,7 +73,15 @@ const Register = () => {
     const selectedDay = new Date(birthday);
     if (selectedDay > today) {
       toast.error("Birthday is not valid");
-      setCheckInputValid({ ...defaultInputCheck, validBrthday: false });
+      setCheckInputValid({ ...defaultInputCheck, validBirthday: false });
+      return false;
+    }
+
+    // Regular expression to validate phone number
+    const phoneRegex = /^\+?\d{1,15}$/;
+    if(typeof phone !== 'string' || !phoneRegex.test(phone)) {
+      toast.error("Invalid phone number format")
+      setCheckInputValid({ ...defaultInputCheck, validPhone: false });
       return false;
     }
 
@@ -105,16 +120,32 @@ const Register = () => {
         return "validConfirmPassword";
       case "birthday":
         return "validBirthday";
+      case "phone":
+        return "validPhone";
       default:
         return fieldName;
     }
   };
 
-  const handleRegister = (event) => {
+  const handleRegister = async (event) => {
+    const { name, email, password, birthday, phone, gender } = formData;
+    console.log("front: ", formData)
     event.preventDefault();
     let checkValid = isValidInputs();
 
-    console.log(`>>Check user data: `, formData);
+    if (checkValid) {
+      const res = await registerUserService({ name, email, password, birthday, phone, gender })
+      const data = res.data;
+      console.log(`>>Check user data: `, res.data);
+
+      if(data.errCode === 0) {
+        toast.success(data.errMessage)
+        router.push('/')
+      } else {
+        toast.error(data.errMessage)
+        setCheckInputValid({ ...defaultInputCheck, validEmail: false });
+      }
+    }
   };
 
   return (
@@ -264,8 +295,14 @@ const Register = () => {
               <label className="block mb-2 text-sm font-medium text-gray-900">
                 Phone Number
                 <input
-                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5"
-                  placeholder="(+1) 000-000-000"
+                  className={`${
+                    checkInputValid.validPhone
+                      ? "border-gray-300"
+                      : "border-red-500"
+                  } 
+                  bg-gray-50 border border-gray-300 text-gray-900
+                  sm:text-sm rounded-lg block w-full p-2.5`}                  
+                  placeholder="+1 000000000"
                   id="phone"
                   name="phone"
                   type="tel"
