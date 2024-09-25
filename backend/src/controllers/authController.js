@@ -1,9 +1,8 @@
-import { registerUser } from '../services/authService.js'
+import { registerUser, loginUser } from '../services/authService.js'
 
 export const register = async (req, res) => {
   try {
-    const { name, email, password, birthday, phone, gender } = req.body
-    console.log("Body: ",req.body);
+    const { name, email, password } = req.body
 
     if (!name || !email || !password) {
       return res.status(400).json({
@@ -11,10 +10,11 @@ export const register = async (req, res) => {
           errCode: 1
         })
     }
-    const newUser = await registerUser({ name, email, password, birthday, phone, gender })
+    const newUser = await registerUser(req.body)
     res.status(201).json({
       errMessage: newUser.errMessage,
-      errCode: newUser.errCode
+      errCode: newUser.errCode,
+      token: newUser.token
     })
   } catch (error) {
     res
@@ -23,16 +23,15 @@ export const register = async (req, res) => {
   }
 }
 
-// export const login = async (req, res) => {
-//   try {
-//     const { email, password } = req.body;
-//     const token = await loginUser({ email, password });
-//     res.status(200).json({ message: 'Login successful', token });
-//   } catch (error) {
-//     res.status(400).json({ error: error.message });
-//   }
-// };
-
-// export const logout = (req, res) => {
-//   res.status(200).json({ message: 'Logout successful' });
-// };
+export const login = async (req, res) => {
+  try {
+    const data = await loginUser(req.body);
+    res.status(200).json({
+      errMessage: data.errMessage,
+      errCode: data.errCode,
+      token: data.token
+    });
+  } catch (error) {
+    res.status(400).json({ error: 'User login failed', message: error.message });
+  }
+};
