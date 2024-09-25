@@ -7,7 +7,7 @@ CREATE TABLE
     email VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
     gender VARCHAR(255),
-    birthday DATE,
+    birthday VARCHAR(15),
     phone VARCHAR(15),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
