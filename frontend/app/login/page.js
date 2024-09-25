@@ -2,8 +2,11 @@
 import Link from "next/link";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { loginUserService } from "../services/authService";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -48,12 +51,47 @@ const Login = () => {
       ...formData,
       [name]: value,
     });
+
+    // Reset validity state for the specific input field when the user types
+    resetValidity(name);
   };
 
-  const handleLogin = (event) => {
+  const resetValidity = (fieldName) => {
+    setCheckInputValid((prev) => ({
+      ...prev,
+      [getValidityKey(fieldName)]: true,
+    }));
+  };
+
+  const getValidityKey = (fieldName) => {
+    switch (fieldName) {
+      case "email":
+        return "validEmail";
+      case "password":
+        return "validPassword";
+      default:
+        return fieldName;
+    }
+  };
+
+  const handleLogin = async (event) => {
     event.preventDefault();
+    let { email, password } = formData;
     let checkInputValid = isValidInputs();
-    console.log("Login successfully!", formData);
+
+    if (checkInputValid) {
+      const res = await loginUserService({ email, password });
+      console.log("Login triggered: ", res.data);
+
+      if (res.data.errCode === 0) {
+        // toast.success(res.data.errMessage);
+        localStorage.setItem("token", res.data.token);
+        router.push('/');
+      } else {
+        toast.error(res.data.errMessage);
+        setCheckInputValid({ validEmail: false, validPassword: false });
+      }
+    }
   };
 
   return (
@@ -94,7 +132,7 @@ const Login = () => {
                 <span className="text-red-500 pl-1">*</span>
                 <input
                   className={`${
-                    checkInputValid.validEmail
+                    checkInputValid.validPassword
                       ? "border-gray-300"
                       : "border-red-500"
                   } 
