@@ -1,4 +1,4 @@
-import { registerUser, loginUser } from '../services/authService.js'
+import { registerUser, loginUser } from '../services/authService.js';
 
 export const register = async (req, res) => {
   try {
@@ -35,3 +35,11 @@ export const login = async (req, res) => {
     res.status(400).json({ error: 'User login failed', message: error.message });
   }
 };
+
+export const authorization = async(req,res) => {
+  try {
+    res.json(true);
+  } catch (error) {
+    res.status(500).json({ error: 'Authrization failed', message: error.message });
+  }
+}
