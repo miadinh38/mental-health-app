@@ -85,8 +85,11 @@ const Login = () => {
 
       if (res.data.errCode === 0) {
         // toast.success(res.data.errMessage);
-        localStorage.setItem("token", res.data.token);
-        router.push('/');
+        // Check if window is defined before accessing localStorage
+        if (typeof window !== "undefined") {
+          localStorage.setItem("token", res.data.token);
+        }
+        router.push("/");
       } else {
         toast.error(res.data.errMessage);
         setCheckInputValid({ validEmail: false, validPassword: false });

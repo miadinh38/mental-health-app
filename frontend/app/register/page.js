@@ -129,18 +129,20 @@ const Register = () => {
 
   const handleRegister = async (event) => {
     const { name, email, password, birthday, phone, gender } = formData;
-    console.log("front: ", formData)
     event.preventDefault();
     let checkValid = isValidInputs();
 
     if (checkValid) {
       const res = await registerUserService({ name, email, password, birthday, phone, gender })
       const data = res.data;
-      console.log(`>>Check user data: `, res.data);
+      // console.log(`>>Check user data: `, res.data);
 
       if(data.errCode === 0) {
         toast.success(data.errMessage);
-        localStorage.setItem("token", data.token);
+        // Check if window is defined before accessing localStorage
+        if (typeof window !== 'undefined') {
+          localStorage.setItem("token", data.token);
+        }
         router.push('/');
       } else {
         toast.error(data.errMessage)

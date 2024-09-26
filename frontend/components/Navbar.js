@@ -2,14 +2,24 @@
 import Image from "next/image";
 import Link from "next/link";
 import Button from "./Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    // Check if window is defined to ensure we are in the browser
+    if (typeof window !== 'undefined') {
+      const token = localStorage.getItem("token");
+      setIsLoggedIn(!!token);
+    }
+  }, []);
 
   const handleLogout = () => {
-    localStorage.clear();
-    setIsLoggedIn(false);
+    if (typeof window !== 'undefined') {
+      localStorage.clear();
+      setIsLoggedIn(false);
+    }
   };
 
   return (
