@@ -157,7 +157,7 @@ const Login = () => {
             </button>
 
             <p className="regular-14">
-              "Don't have an account yet?"
+              Don&apos;t have an account yet?
               <Link
                 href="/register"
                 className="pl-2 text-green-800 hover:underline"
