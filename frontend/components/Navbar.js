@@ -1,8 +1,17 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "./Button";
+import { useState } from "react";
 
 const Navbar = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
+
+  const handleLogout = () => {
+    localStorage.clear();
+    setIsLoggedIn(false);
+  };
+
   return (
     <nav className="flex justify-between items-center text-xl py-2 px-8">
       <Image
@@ -26,17 +35,26 @@ const Navbar = () => {
         ))}
       </ul>
 
-      <ul className="flex gap-3">
-        {["login", "register"].map((button, index) => (
-          <Link key={index} href={`${button}`}>
-            <Button
-              type="button"
-              title={`${button}`}
-              variant="btn_dark_green capitalize"
-            />
-          </Link>
-        ))}
-      </ul>
+      {!isLoggedIn ? (
+        <ul className="flex gap-3">
+          {["login", "register"].map((button, index) => (
+            <Link key={index} href={`${button}`}>
+              <Button
+                type="button"
+                title={`${button}`}
+                variant="btn_dark_green capitalize"
+              />
+            </Link>
+          ))}
+        </ul>
+      ) : (
+        <Button
+          type="button"
+          title="Logout"
+          variant="btn_dark_green capitalize"
+          onClick={handleLogout}
+        />
+      )}
     </nav>
   );
 };
