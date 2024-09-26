@@ -3,8 +3,9 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
+//Starts the server and loads important settings 
 const PORT = process.env.PORT || 8000
 
 app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`)
+  
 })
