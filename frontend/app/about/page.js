@@ -1,8 +1,8 @@
 import React from "react";
-import { Poppins } from "@next/font/google"; // Importar la fuente Poppins
+import { Poppins } from "@next/font/google"; 
 
 const poppins = Poppins({
-  weight: ["400", "700"], // Puedes ajustar los pesos que necesites
+  weight: ["400", "700"], 
   subsets: ["latin"],
 });
 
@@ -29,7 +29,7 @@ const About = () => {
   return (
     <div className={poppins.className}>
       {" "}
-      {/* Aplicar la fuente Poppins */}
+     
       <div className="flex justify-center items-center min-h-[50vh] bg-gray-100 space-x-4">
         <div className="text-left lg:w-2/5">
           <h1 className={`${poppins.className} text-4xl font-bold mb-4`}>
