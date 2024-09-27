@@ -7,8 +7,7 @@ const Contact = () => {
         <h1 className="text-4xl font-bold mb-4">Get in touch with us</h1>
         <h5 className="italic mb-4">
           {" "}
-          “There is a crack in everything; that’s how the light gets in” ―
-          Leonard Cohen.
+          "Anything human is mentionable, and anything that is mentionable can be more manageable. When we can talk about our feelings, they become less overwhelming, less upsetting, and less scary.” – Fred Rogers.
         </h5>{" "}
         <div className="text-center">
           <p className="text-lg font-medium">Teenvent 990 Villa Street</p>

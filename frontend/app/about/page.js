@@ -1,4 +1,10 @@
 import React from "react";
+import { Poppins } from "@next/font/google"; // Importar la fuente Poppins
+
+const poppins = Poppins({
+  weight: ["400", "700"], // Puedes ajustar los pesos que necesites
+  subsets: ["latin"],
+});
 
 const About = () => {
   const teamData = [
@@ -21,14 +27,20 @@ const About = () => {
   ];
 
   return (
-    <div>
+    <div className={poppins.className}>
+      {" "}
+      {/* Aplicar la fuente Poppins */}
       <div className="flex justify-center items-center min-h-[50vh] bg-gray-100 space-x-4">
         <div className="text-left lg:w-2/5">
-          <h1 className="text-4xl font-bold mb-4">Teenvent</h1>
-          <p className="text-lg">
-            TeenVent is a mental health and wellness app that delivers services
-            and resources meant to improve the quality of life for those dealing
-            with mental and emotional health struggles.
+          <h1 className={`${poppins.className} text-4xl font-bold mb-4`}>
+            Teenvent
+          </h1>
+          <p className="text-lg text-justify">
+            TeenVent is a mental health and wellness app for teens that delivers
+            services and resources meant to improve the quality of life for
+            those dealing with mental and emotional health struggles. It is safe
+            and inclusive digital platform designed to support teens facing
+            mental health challenges
           </p>
         </div>
 
@@ -40,11 +52,8 @@ const About = () => {
           />
         </div>
       </div>
-
       <div className="my-8 border-t border-gray-200"></div>
-
       {/* Purpose */}
-
       <div className="bg-gray-100 p-10">
         <h1 className="text-4xl font-bold mb-4 text-center">Our purpose</h1>
         <p className="text-lg text-center">
@@ -53,7 +62,6 @@ const About = () => {
           dealing with mental and emotional health struggles.
         </p>
       </div>
-
       <div className="flex justify-center">
         <img
           src="/images/teenvent2.jpg"
@@ -61,20 +69,15 @@ const About = () => {
           className="mx-auto w-96 h-96 object-cover rounded-full shadow-lg"
         />
       </div>
-
       <div className="my-8 border-t border-gray-200"></div>
-
       {/* Array of cards */}
       <div className="flex flex-col items-center">
         <h1 className="text-4xl font-bold mb-14 text-center">Our team</h1>
         <div className="flex space-x-0">
-          {" "}
           {teamData.map((member, index) => (
-            
             <div
               key={index}
               className="relative flex w-60 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md"
-              
             >
               <div className="relative mx-4 -mt-6 h-40 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40 bg-gradient-to-r from-blue-500 to-blue-600"></div>
               <div className="p-6">
@@ -94,8 +97,6 @@ const About = () => {
                 </button>
               </div>
             </div>
-    
-
           ))}
         </div>
       </div>
