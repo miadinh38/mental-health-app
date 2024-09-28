@@ -1,41 +1,45 @@
-import { registerUser, loginUser } from '../services/authServices.js';
-import { generateToken } from '../utils/jwt.js';
+import { registerUser, loginUser } from '../services/authService.js';
 
-// Register
 export const register = async (req, res) => {
-  const { name, email, password } = req.body;
-
   try {
-    const user = await registerUser({ name, email, password });
-    const token = generateToken(user);
-    res.status(201).json({ message: 'User registered', token });
+    const { name, email, password } = req.body
+
+    if (!name || !email || !password) {
+      return res.status(400).json({
+          errorMessage: 'Name, email, and password are required!',
+          errCode: 1
+        })
+    }
+    const newUser = await registerUser(req.body)
+    res.status(201).json({
+      errMessage: newUser.errMessage,
+      errCode: newUser.errCode,
+      token: newUser.token
+    })
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res
+      .status(400)
+      .json({ error: 'User registration failed', message: error.message })
   }
 };
 
-// Login
 export const login = async (req, res) => {
-  const { email, password } = req.body;
-
   try {
-    const loginResult = await loginUser({ email, password });
-
-    if (loginResult.status === 404) {
-      return res.status(404).json({ error: 'User not found' });
-    }
-
-    if (loginResult.status === 400) {
-      return res.status(400).json({ error: 'Invalid password' });
-    }
-
-    res.status(200).json({ message: 'Login successful', token: loginResult.token });
+    const data = await loginUser(req.body);
+    res.status(200).json({
+      errMessage: data.errMessage,
+      errCode: data.errCode,
+      token: data.token
+    });
   } catch (error) {
-    res.status(500).json({ error: 'Server error' });
+    res.status(400).json({ error: 'User login failed', message: error.message });
   }
 };
 
-// Logout
-export const logout = (req, res) => {
-  res.status(200).json({ message: 'Logout successful' });
-};
+export const authorization = async(req,res) => {
+  try {
+    res.json(true);
+  } catch (error) {
+    res.status(500).json({ error: 'Authrization failed', message: error.message });
+  }
+}

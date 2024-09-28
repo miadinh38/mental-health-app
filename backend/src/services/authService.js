@@ -1,36 +1,76 @@
-import pool from '../config/databasepg.js';
+import { createUser, getUserByEmail } from '../models/User.js';
+import { generateToken } from "../utils/jwt.js"
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 
 // Register user
-export const registerUser = async ({ name, email, password }) => {
-  const hashedPassword = await bcrypt.hash(password, 10);
-  const query = `
-    INSERT INTO users (name, email, password)
-    VALUES ($1, $2, $3)
-    RETURNING id, name, email;
-  `;
-  const values = [name, email, hashedPassword];
-  const result = await pool.query(query, values);
-  return result.rows[0];
+export const registerUser = async ({ name, email, password, gender, birthday, phone }) => {
+  try {
+    //Check if user exists
+    const isEmailExist = await getUserByEmail(email);
+    if(isEmailExist.length > 0) {
+      return {
+        errMessage: "This email is registered",
+        errCode: 1
+      }
+    }
+  
+    //Hash password
+    const saltRounds = 10;
+    const salt = bcrypt.genSaltSync(saltRounds);
+    const hashedPassword = await bcrypt.hashSync(password, salt);
+    password = hashedPassword;
+  
+    const newUser = await createUser({name, email, password, gender, birthday, phone})
+
+    // Generate JWT token
+    const token = generateToken(newUser.id)
+
+    return {
+      errMessage: "User created succesfully!",
+      errCode: 0,
+      token
+    };
+  } catch (error) {
+    console.error('Error from registerUser service: ', error.message)
+    throw error
+  }
+  
 };
 
 // Login user
 export const loginUser = async ({ email, password }) => {
-  const query = `SELECT * FROM users WHERE email = $1`;
-  const result = await pool.query(query, [email]);
+  
+  try {
+    // Check if user is reqgistered
+    const user = await getUserByEmail(email);
+    if (user.length === 0) {
+      return {
+        errMessage: "Email or password is incorrect",
+        errCode: 1
+      }
+    }
+    
+    // Check password 
+    const hashedPassword = user[0].password;
+    const isValidPassword = await bcrypt.compareSync(password, hashedPassword); // return true or false
+    
+    if (!isValidPassword) {
+      return {
+        errMessage: "Email or password is incorrect",
+        errCode: 1
+      }    
+    }
 
-  if (result.rows.length === 0) {
-    return { status: 404, message: 'User not found' };
+    // Generate JWT token
+    const token = generateToken(user[0].id)
+    
+    return {
+      errMessage: "User login succesfully!",
+      errCode: 0,
+      token
+    };
+  } catch (error) {
+    console.error('Login error:', error);
+    return { status: 500, message: 'Server error' };
   }
-
-  const user = result.rows[0];
-  const isValidPassword = await bcrypt.compare(password, user.password);
-
-  if (!isValidPassword) {
-    return { status: 400, message: 'Invalid password' };
-  }
-
-  const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
-  return { status: 200, token };
 };
