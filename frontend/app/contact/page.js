@@ -6,9 +6,8 @@ const Contact = () => {
       <div className="text-left lg:w-2/5">
         <h1 className="text-4xl font-bold mb-4">Get in touch with us</h1>
         <h5 className="italic mb-4">
-          {" "}
-          "Anything human is mentionable, and anything that is mentionable can be more manageable. When we can talk about our feelings, they become less overwhelming, less upsetting, and less scary.” – Fred Rogers.
-        </h5>{" "}
+        &ldquo;Anything human is mentionable, and anything that is mentionable can be more manageable. When we can talk about our feelings, they become less overwhelming, less upsetting, and less scary.&rdquo; &mdash; Fred Rogers.
+        </h5>
         <div className="text-center">
           <p className="text-lg font-medium">Teenvent 990 Villa Street</p>
           <p className="text-lg">Mountain View, CA 94041</p>

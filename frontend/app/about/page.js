@@ -1,8 +1,9 @@
 import React from "react";
-import { Poppins } from "@next/font/google"; 
+import { Poppins } from "@next/font/google";
+import Image from "next/image";
 
 const poppins = Poppins({
-  weight: ["400", "700"], 
+  weight: ["400", "700"],
   subsets: ["latin"],
 });
 
@@ -29,7 +30,6 @@ const About = () => {
   return (
     <div className={poppins.className}>
       {" "}
-     
       <div className="flex justify-center items-center min-h-[50vh] bg-gray-100 space-x-4">
         <div className="text-left lg:w-2/5">
           <h1 className={`${poppins.className} text-4xl font-bold mb-4`}>
@@ -45,8 +45,10 @@ const About = () => {
         </div>
 
         <div>
-          <img
+          <Image
             src="/images/teenvent1.png"
+            width={500}
+            height={500}
             alt="Teenvent Image"
             className="w-80 h-auto rounded-full shadow-lg"
           />
@@ -63,8 +65,10 @@ const About = () => {
         </p>
       </div>
       <div className="flex justify-center">
-        <img
+        <Image
           src="/images/teenvent2.jpg"
+          width={500}
+          height={500}
           alt="Teenvent Image"
           className="mx-auto w-96 h-96 object-cover rounded-full shadow-lg"
         />
