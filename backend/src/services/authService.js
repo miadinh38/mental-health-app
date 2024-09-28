@@ -37,7 +37,6 @@ export const registerUser = async ({ name, email, password, gender, birthday, ph
   
 };
 
-
 // Login user
 export const loginUser = async ({ email, password }) => {
   

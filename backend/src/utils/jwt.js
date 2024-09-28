@@ -9,5 +9,15 @@ export const generateToken = (user) => {
 }
 
 export const verifyToken = (token) => {
-  return jwt.verify(token, process.env.JWT_SECRET)
-}
+  try {
+    return jwt.verify(token, process.env.JWT_SECRET);
+  } catch (error) {
+    if (error.name === 'TokenExpiredError') {
+      return { valid: false, expired: true, message: 'Token has expired' };
+    } else if (error.name === 'JsonWebTokenError') {
+      return { valid: false, expired: false, message: 'Invalid token' };
+    } else {
+      return { valid: false, expired: false, message: 'Token verification failed' };
+    }
+  }
+};
