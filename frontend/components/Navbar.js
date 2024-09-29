@@ -2,25 +2,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import Button from "./Button";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useAuth } from "../hooks/useAuth";
 
 const Navbar = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    // Check if window is defined to ensure we are in the browser
-    if (typeof window !== 'undefined') {
-      const token = localStorage.getItem("token");
-      setIsLoggedIn(!!token);
-    }
-  }, []);
-
-  const handleLogout = () => {
-    if (typeof window !== 'undefined') {
-      localStorage.clear();
-      setIsLoggedIn(false);
-    }
-  };
+  const { logout, isAuth, currentUser } = useAuth();
 
   return (
     <nav className="flex justify-between items-center text-xl py-2 px-8">
@@ -45,7 +31,7 @@ const Navbar = () => {
         ))}
       </ul>
 
-      {!isLoggedIn ? (
+      {!isAuth ? (
         <ul className="flex gap-3">
           {["login", "register"].map((button, index) => (
             <Link key={index} href={`${button}`}>
@@ -58,12 +44,15 @@ const Navbar = () => {
           ))}
         </ul>
       ) : (
-        <Button
-          type="button"
-          title="Logout"
-          variant="btn_dark_green capitalize"
-          onClick={handleLogout}
-        />
+        <>
+          <p className="pr-4 regular-18">{currentUser?.name}</p>
+          <Button
+            type="button"
+            title="Logout"
+            variant="btn_dark_green capitalize"
+            onClick={logout}
+          />
+        </>
       )}
     </nav>
   );
