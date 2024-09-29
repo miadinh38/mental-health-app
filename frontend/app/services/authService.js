@@ -7,3 +7,13 @@ export const registerUserService = ({ name, email, password, birthday, phone, ge
 export const loginUserService = ({ email, password}) => {
   return axios.post("http://localhost:8000/api/auth/login", { email, password })
 }
+
+export const checkAuthenticationService = (token) => {
+  const headers = {
+    Authorization: `Bearer ${token}`
+  }
+  return axios.get("http://localhost:8000/api/auth/is-verify", {
+      headers
+    }
+  )
+}
