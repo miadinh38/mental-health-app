@@ -23,7 +23,7 @@ export const registerUser = async ({ name, email, password, gender, birthday, ph
     const newUser = await createUser({name, email, password, gender, birthday, phone})
 
     // Generate JWT token
-    const token = generateToken(newUser.id)
+    const token = generateToken(newUser)
 
     return {
       errMessage: "User created succesfully!",
@@ -62,7 +62,7 @@ export const loginUser = async ({ email, password }) => {
     }
 
     // Generate JWT token
-    const token = generateToken(user[0].id)
+    const token = generateToken(user[0])
     
     return {
       errMessage: "User login succesfully!",
