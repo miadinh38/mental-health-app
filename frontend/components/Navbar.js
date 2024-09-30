@@ -34,7 +34,7 @@ const Navbar = () => {
       {!isAuth ? (
         <ul className="flex gap-3">
           {["login", "register"].map((button, index) => (
-            <Link key={index} href={`${button}`}>
+            <Link key={index} href={`/${button}`}>
               <Button
                 type="button"
                 title={`${button}`}
