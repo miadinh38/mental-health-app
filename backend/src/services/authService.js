@@ -1,4 +1,4 @@
-import { createUser, getUserByEmail, updateResetToken } from '../models/User.js'
+import { createUser, getUserByEmail, getUserByToken, updatePassword, updateResetToken } from '../models/User.js'
 import resetPasswordTemplate from '../templates/resetPasswordEmail.js';
 import { sendEmail } from '../utils/emailSender.js';
 import { generateToken } from '../utils/jwt.js'
@@ -7,6 +7,17 @@ import crypto from 'crypto';
 import dotenv from 'dotenv';
 
 dotenv.config();
+
+const hashPassword = async (password) => {
+  const saltRounds = 10; // Number of salt rounds
+  try {
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    return hashedPassword;
+  } catch (error) {
+    console.error('Error hashing password:', error.message);
+    throw error;
+  }
+};
 
 // Register user
 export const registerUser = async ({
@@ -28,10 +39,7 @@ export const registerUser = async ({
     }
 
     //Hash password
-    const saltRounds = 10
-    const salt = bcrypt.genSaltSync(saltRounds)
-    const hashedPassword = await bcrypt.hashSync(password, salt)
-    password = hashedPassword
+    password = await hashPassword(password);
 
     const newUser = await createUser({
       name,
@@ -70,7 +78,7 @@ export const loginUser = async ({ email, password }) => {
 
     // Check password
     const hashedPassword = user[0].password
-    const isValidPassword = await bcrypt.compareSync(password, hashedPassword) // return true or false
+    const isValidPassword = await bcrypt.compare(password, hashedPassword) // return true or false
 
     if (!isValidPassword) {
       return {
@@ -117,7 +125,7 @@ export const forgotPasswordService = async ({ email }) => {
 
     
     // Create a reset link & Send email with the reset link
-    const resetLink = `${process.env.DOMAIN_URL}/reset-password?token=${resetToken}&email=${encodeURIComponent(email)}&expires=${expiresTimestamp}`;
+    const resetLink = `${process.env.DOMAIN_URL}/reset-password?token=${hashedToken}&email=${encodeURIComponent(email)}&expires=${expiresTimestamp}`;
     await sendEmail(
       email, 
       'Reset your password',
@@ -131,4 +139,39 @@ export const forgotPasswordService = async ({ email }) => {
     console.error('Error from forgotPasswordService:', error.message)
     return { status: 500, message: 'Server error' }
   }  
+}
+
+// Reset & update password 
+export const resetPasswordService = async({ token, newPassword }) => {
+  try {
+    const user = await getUserByToken({token});
+    if(!user) {
+      return {
+        errMessage: 'Invalid or expired token',
+        errCode: 1,
+      }    
+    }
+
+    //Compare new input password vs old password
+    const oldHashedPassword = user.password;
+    const hasedPassowrd = await hashPassword(newPassword)
+
+    const isMatch = await bcrypt.compare(newPassword, oldHashedPassword);
+
+    if(isMatch) {
+      return {
+        errMessage: 'Your new password must be different from your previous password.',
+        errCode: 1,
+      }
+    }
+
+    await updatePassword({ token, hasedPassowrd })
+    return {
+      errMessage: 'Password reset successfully!',
+      errCode: 0,
+    }
+  } catch (error) {
+    console.error('Error from resetPasswordService:', error.message)
+    return { status: 500, message: 'Server error' }
+  }
 }

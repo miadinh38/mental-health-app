@@ -2,6 +2,7 @@ import {
   registerUser,
   loginUser,
   forgotPasswordService,
+  resetPasswordService,
 } from '../services/authService.js'
 
 export const register = async (req, res) => {
@@ -10,7 +11,7 @@ export const register = async (req, res) => {
 
     if (!name || !email || !password) {
       return res.status(400).json({
-        errorMessage: 'Name, email, and password are required!',
+        errMessage: 'Name, email, and password are required!',
         errCode: 1,
       })
     }
@@ -68,4 +69,26 @@ export const forgotPassword = async (req, res) => {
   }
 }
 
-export const resetPassword = () => {}
+export const resetPassword = async(req, res) => {
+  try {
+    const { token } = req.params;
+    const { newPassword } = req.body;
+
+    if(!token || token === 'null' || !newPassword ) {
+      return res.status(400).json({
+        errMessage: 'Email and new password are required!',
+        errCode: 1,
+      })
+    }
+
+    const data = await resetPasswordService({token, newPassword})
+    res.status(200).json({
+      errMessage: data.errMessage,
+      errCode: data.errCode,
+    })
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: 'Reset password failed', message: error.message })
+  }
+}

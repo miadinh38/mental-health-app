@@ -44,3 +44,35 @@ export const updateResetToken = async({hashedToken, expires, email}) => {
     console.error('Error from updateResetToken model: ', error.message)
   }
 }
+
+export const getUserByToken = async({token}) => {
+  try {
+    const query = `SELECT * FROM users WHERE reset_password_token = $1 AND reset_password_expires > NOW();`
+    const params = [token];
+    const result = await db.query(query, params);
+    return result.rows[0];
+  } catch (error) {
+    console.error('Error from getUserByToken model: ', error.message)
+    throw error
+  }
+}
+
+// Update new password
+export const updatePassword = async({token, hasedPassowrd}) => {
+  try {
+    const user = await getUserByToken({token});
+    if(!user) {
+      throw new Error('Invalid or expired token');
+    }
+
+    const query = `UPDATE users 
+      SET password = $1 
+      WHERE email = $2 
+      RETURNING password;`
+    const values = [hasedPassowrd, user.email]
+    const result = await db.query(query, values);
+    return result.rows[0];
+  } catch (error) {
+    console.error('Error from updatePassword model: ', error.message)
+  }
+}
