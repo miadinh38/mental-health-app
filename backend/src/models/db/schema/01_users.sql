@@ -9,6 +9,9 @@ CREATE TABLE
     gender VARCHAR(255),
     birthday VARCHAR(15),
     phone VARCHAR(15),
+    reset_password_token VARCHAR(255),
+    reset_password_expires TIMESTAMP,
+
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   );

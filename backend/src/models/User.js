@@ -29,3 +29,18 @@ export const createUser = async ({ name, email, password, gender, birthday, phon
     throw error
   }
 }
+
+// Update and save reset password token and expires 
+export const updateResetToken = async({hashedToken, expires, email}) => {
+  try {
+    const query = `UPDATE users 
+      SET reset_password_token = $1, reset_password_expires =$2 
+      WHERE email = $3 
+      RETURNING *;`
+    const values = [hashedToken, expires, email]
+    const result = await db.query(query, values);
+    return result.rows[0];
+  } catch (error) {
+    console.error('Error from updateResetToken model: ', error.message)
+  }
+}
