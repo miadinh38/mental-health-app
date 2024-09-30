@@ -1,5 +1,5 @@
 import React from "react";
-import { Poppins } from "@next/font/google";
+import { Poppins } from "next/font/google";
 import Image from "next/image";
 
 const poppins = Poppins({

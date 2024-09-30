@@ -1,12 +1,15 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { loginUserService } from "../services/authService";
 import { useRouter } from "next/navigation";
+import { useAuth } from "../../hooks/useAuth";
 
 const Login = () => {
   const router = useRouter();
+  const { checkAuthentication } = useAuth();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -81,7 +84,6 @@ const Login = () => {
 
     if (checkInputValid) {
       const res = await loginUserService({ email, password });
-      console.log("Login triggered: ", res.data);
 
       if (res.data.errCode === 0) {
         // toast.success(res.data.errMessage);
@@ -89,6 +91,7 @@ const Login = () => {
         if (typeof window !== "undefined") {
           localStorage.setItem("token", res.data.token);
         }
+        checkAuthentication(res.data.token);
         router.push("/");
       } else {
         toast.error(res.data.errMessage);
@@ -151,6 +154,8 @@ const Login = () => {
                 />
               </label>
             </div>
+
+            <Link href="/forgot-password" className="flexEnd regular-14 text-green-800 hover:underline">Forgot password?</Link>
 
             <button
               className="w-full bg-green-800 hover:bg-black focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  focus:ring-blue-800 text-white"
