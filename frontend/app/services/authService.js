@@ -22,3 +22,7 @@ export const checkAuthenticationService = (token) => {
 export const forgotPasswordService = ({ email }) => {
   return axios.post(`${API_URL}/auth/forgot-password`, { email })
 }
+
+export const resetPasswordService = ({token, newPassword}) => {
+  return axios.post(`${API_URL}/auth/reset-password/${token}`, {newPassword})
+}
