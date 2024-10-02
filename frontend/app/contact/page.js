@@ -1,97 +1,278 @@
-import React from "react";
+"use client";
+import { useState } from "react";
+import Image from "next/image";
 
 const Contact = () => {
+  // Estado para manejar el acordeón
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const toggleAccordion = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
   return (
-    <div className="flex justify-center items-center min-h-[50vh] bg-gray-100 space-x-4">
-      <div className="text-left lg:w-2/5">
-        <h1 className="text-4xl font-bold mb-4">Get in touch with us</h1>
-        <h5 className="italic mb-4">
-        &ldquo;Anything human is mentionable, and anything that is mentionable can be more manageable. When we can talk about our feelings, they become less overwhelming, less upsetting, and less scary.&rdquo; &mdash; Fred Rogers.
-        </h5>
-        <div className="text-center">
-          <p className="text-lg font-medium">Teenvent 990 Villa Street</p>
-          <p className="text-lg">Mountain View, CA 94041</p>
-          <p className="text-lg text-blue-500">helpteenstoday@gmail.com</p>
+    <div className="contact-container my-8">
+      <h1 className="text-center text-2xl font-bold">Contact</h1>
+      {/* Accordion */}
+      <div className="accordion mt-5 mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        {/* Accordion Item 1 */}
+        <div className="border-b border-slate-200">
+          <button
+            onClick={() => toggleAccordion(1)}
+            className="w-full flex justify-between items-center py-5 text-slate-800"
+          >
+            <span>How to contact us</span>
+            <span className="text-slate-800 transition-transform duration-300">
+              {openIndex === 1 ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  className="w-4 h-4"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  className="w-4 h-4"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M11.78 9.78a.75.75 0 0 1-1.06 0L8 7.06 5.28 9.78a.75.75 0 0 1-1.06-1.06l3.25-3.25a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06Z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              )}
+            </span>
+          </button>
+          {openIndex === 1 && (
+            <div className="overflow-hidden transition-all duration-300 ease-in-out">
+              <div className="pb-5 text-sm text-slate-500">
+                Where are we located? <br />
+                Our team works across Canada. <br />
+                <br />
+                Need to mail something to us? Our mailing address is as follows:{" "}
+                <br />
+                Teenvent <br />
+                400-601 West Broadway <br />
+                Vancouver, BC, V5Z 4C2 <br />
+                <br />
+                To reach us by phone, our telephone number is +1123456789.
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Accordion Item 2 */}
+        <div className="border-b border-slate-200">
+          <button
+            onClick={() => toggleAccordion(2)}
+            className="w-full flex justify-between items-center py-5 text-slate-800"
+          >
+            <span>Lorem ipsum dolor sit amet</span>
+            <span className="text-slate-800 transition-transform duration-300">
+              {openIndex === 2 ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  className="w-4 h-4"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  className="w-4 h-4"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M11.78 9.78a.75.75 0 0 1-1.06 0L8 7.06 5.28 9.78a.75.75 0 0 1-1.06-1.06l3.25-3.25a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06Z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              )}
+            </span>
+          </button>
+          {openIndex === 2 && (
+            <div className="overflow-hidden transition-all duration-300 ease-in-out">
+              <div className="pb-5 text-sm text-slate-500">
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                laboris nisi ut aliquip ex ea commodo consequat.
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Accordion Item 3 */}
+        <div className="border-b border-slate-200">
+          <button
+            onClick={() => toggleAccordion(3)}
+            className="w-full flex justify-between items-center py-5 text-slate-800"
+          >
+            <span>Lorem ipsum dolor sit amet</span>
+            <span className="text-slate-800 transition-transform duration-300">
+              {openIndex === 3 ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  className="w-4 h-4"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  className="w-4 h-4"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M11.78 9.78a.75.75 0 0 1-1.06 0L8 7.06 5.28 9.78a.75.75 0 0 1-1.06-1.06l3.25-3.25a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06Z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              )}
+            </span>
+          </button>
+          {openIndex === 3 && (
+            <div className="overflow-hidden transition-all duration-300 ease-in-out">
+              <div className="pb-5 text-sm text-slate-500">
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa
+                qui officia deserunt mollit anim id est laborum.
+              </div>
+            </div>
+          )}
+        </div>
+         {/* Accordion Item 4 */}
+         <div className="border-b border-slate-200">
+          <button
+            onClick={() => toggleAccordion(4)}
+            className="w-full flex justify-between items-center py-5 text-slate-800"
+          >
+            <span>Lorem ipsum dolor sit amet</span>
+            <span className="text-slate-800 transition-transform duration-300">
+              {openIndex === 4 ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  className="w-4 h-4"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  className="w-4 h-4"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M11.78 9.78a.75.75 0 0 1-1.06 0L8 7.06 5.28 9.78a.75.75 0 0 1-1.06-1.06l3.25-3.25a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06Z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              )}
+            </span>
+          </button>
+          {openIndex === 4 && (
+            <div className="overflow-hidden transition-all duration-300 ease-in-out">
+              <div className="pb-5 text-sm text-slate-500">
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa
+                qui officia deserunt mollit anim id est laborum.
+              </div>
+            </div>
+            
+          )}
+        </div>
+
+         {/* Accordion Item 5 */}
+         <div className="border-b border-slate-200">
+          <button
+            onClick={() => toggleAccordion(5)}
+            className="w-full flex justify-between items-center py-5 text-slate-800"
+          >
+            <span>Lorem ipsum dolor sit amet</span>
+            <span className="text-slate-800 transition-transform duration-300">
+              {openIndex === 5 ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  className="w-4 h-4"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  className="w-4 h-4"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M11.78 9.78a.75.75 0 0 1-1.06 0L8 7.06 5.28 9.78a.75.75 0 0 1-1.06-1.06l3.25-3.25a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06Z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              )}
+            </span>
+          </button>
+          {openIndex === 5 && (
+            <div className="overflow-hidden transition-all duration-300 ease-in-out">
+              <div className="pb-5 text-sm text-slate-500">
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa
+                qui officia deserunt mollit anim id est laborum.
+              </div>
+            </div>
+            
+          )}
         </div>
       </div>
 
-      <div className="flex items-center justify-center p-12">
-        <div className="mx-auto w-full max-w-[550px]">
-          <form action="https://formbold.com/s/FORM_ID" method="POST">
-            <div className="mb-5">
-              <label
-                htmlFor="name"
-                className="mb-3 block text-base font-medium text-[#07074D]"
-              >
-                Full Name
-              </label>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                placeholder="Full Name"
-                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-              />
-            </div>
+      <div className="mt-12"></div>
 
-            <div className="mb-5">
-              <label
-                htmlFor="email"
-                className="mb-3 block text-base font-medium text-[#07074D]"
-              >
-                Email Address
-              </label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="example@domain.com"
-                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-              />
-            </div>
+      <div className="mt-12"></div>
 
-            <div className="mb-5">
-              <label
-                htmlFor="subject"
-                className="mb-3 block text-base font-medium text-[#07074D]"
-              >
-                Subject
-              </label>
-              <input
-                type="text"
-                name="subject"
-                id="subject"
-                placeholder="Enter your subject"
-                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-              />
-            </div>
 
-            <div className="mb-5">
-              <label
-                htmlFor="message"
-                className="mb-3 block text-base font-medium text-[#07074D]"
-              >
-                Message
-              </label>
-              <textarea
-                rows="4"
-                name="message"
-                id="message"
-                placeholder="Type your message"
-                className="w-full resize-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-              ></textarea>
-            </div>
-
-            <div className="flex justify-center">
-              <button
-                type="submit"
-                className="hover:shadow-form rounded-md btn_dark_green py-3 px-8 text-base font-semibold text-white outline-none"
-              >
-                Submit
-              </button>
-            </div>
-          </form>
-        </div>
+      <div className="flex justify-center mt-8">
+        <Image
+          src="/images/teenvent3.jpg" 
+          alt="TeenVent event"
+          width={500} 
+          height={300} 
+          className="rounded-lg" 
+        />
       </div>
     </div>
   );
