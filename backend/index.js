@@ -3,6 +3,7 @@ import * as dotenv from 'dotenv'
 import cors from 'cors'
 import helmet from 'helmet'
 import authRoutes from './src/routes/authRoutes.js'
+import articlesRoutes from './src/routes/articlesRoutes.js'
 
 dotenv.config()
 
@@ -20,11 +21,8 @@ app.use(cors())
 app.use(helmet())
 
 // Routes
-// app.get('/', (req, res) => {
-  //   res.json({ message: 'Hello World' })
-  // })
-  
 app.use('/api/auth', authRoutes)
+app.use('/api/articles', articlesRoutes)
 
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`)
