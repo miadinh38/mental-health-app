@@ -3,8 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { registerUserService } from "../services/authService";
-import { useRouter } from 'next/navigation';
-
+import { useRouter } from "next/navigation";
 
 const Register = () => {
   const router = useRouter();
@@ -25,7 +24,7 @@ const Register = () => {
     validPassword: true,
     validConfirmPassword: true,
     validBirthday: true,
-    validPhone: true
+    validPhone: true,
   };
 
   const [checkInputValid, setCheckInputValid] = useState(defaultInputCheck);
@@ -33,7 +32,8 @@ const Register = () => {
   // Check inputs validation
   const isValidInputs = () => {
     setCheckInputValid(defaultInputCheck);
-    const { name, email, password, confirmPassword, birthday, phone } = formData;
+    const { name, email, password, confirmPassword, birthday, phone } =
+      formData;
 
     if (!name) {
       toast.error("Your name is required!");
@@ -79,8 +79,8 @@ const Register = () => {
 
     // Regular expression to validate phone number
     const phoneRegex = /^\+?\d{1,15}$/;
-    if(typeof phone !== 'string' || !phoneRegex.test(phone)) {
-      toast.error("Invalid phone number format")
+    if (typeof phone !== "string" || !phoneRegex.test(phone)) {
+      toast.error("Invalid phone number format");
       setCheckInputValid({ ...defaultInputCheck, validPhone: false });
       return false;
     }
@@ -133,19 +133,26 @@ const Register = () => {
     let checkValid = isValidInputs();
 
     if (checkValid) {
-      const res = await registerUserService({ name, email, password, birthday, phone, gender })
+      const res = await registerUserService({
+        name,
+        email,
+        password,
+        birthday,
+        phone,
+        gender,
+      });
       const data = res.data;
       // console.log(`>>Check user data: `, res.data);
 
-      if(data.errCode === 0) {
+      if (data.errCode === 0) {
         toast.success(data.errMessage);
         // Check if window is defined before accessing localStorage
-        if (typeof window !== 'undefined') {
+        if (typeof window !== "undefined") {
           localStorage.setItem("token", data.token);
         }
-        router.push('/');
+        router.push("/");
       } else {
-        toast.error(data.errMessage)
+        toast.error(data.errMessage);
         setCheckInputValid({ ...defaultInputCheck, validEmail: false });
       }
     }
@@ -171,7 +178,7 @@ const Register = () => {
                       ? "border-gray-300"
                       : "border-red-500"
                   } 
-                  bg-gray-50 border border-gray-300 text-gray-900
+                  border border-gray-300 text-gray-900
                   sm:text-sm rounded-lg block w-full p-2.5`}
                   id="name"
                   name="name"
@@ -194,7 +201,7 @@ const Register = () => {
                       ? "border-gray-300"
                       : "border-red-500"
                   } 
-                  bg-gray-50 border border-gray-300 text-gray-900
+                  border border-gray-300 text-gray-900
                   sm:text-sm rounded-lg block w-full p-2.5`}
                   id="email"
                   name="email"
@@ -216,7 +223,7 @@ const Register = () => {
                       ? "border-gray-300"
                       : "border-red-500"
                   } 
-                  bg-gray-50 border border-gray-300 text-gray-900
+                  border border-gray-300 text-gray-900
                   sm:text-sm rounded-lg block w-full p-2.5`}
                   placeholder="••••••••"
                   id="password"
@@ -239,7 +246,7 @@ const Register = () => {
                       ? "border-gray-300"
                       : "border-red-500"
                   } 
-                  bg-gray-50 border border-gray-300 text-gray-900
+                  border border-gray-300 text-gray-900
                   sm:text-sm rounded-lg block w-full p-2.5`}
                   placeholder="••••••••"
                   id="confirmPassword"
@@ -260,7 +267,7 @@ const Register = () => {
                     name="gender"
                     value={formData.gender}
                     onChange={handleChangeInput}
-                    className="border border-gray-300 sm:text-sm rounded-lg block w-full p-2.5 bg-gray-50 text-gray-900"
+                    className="border border-gray-300 sm:text-sm rounded-lg block w-full p-2.5 text-gray-900"
                   >
                     <option valaue="">Please select one...</option>
                     <option value="female">Female</option>
@@ -281,7 +288,7 @@ const Register = () => {
                         ? "border-gray-300"
                         : "border-red-500"
                     } 
-                    bg-gray-50 border border-gray-300 text-gray-900
+                    border border-gray-300 text-gray-900
                     sm:text-sm rounded-lg block w-full p-2.5`}
                     id="birthday"
                     name="birthday"
@@ -303,8 +310,8 @@ const Register = () => {
                       ? "border-gray-300"
                       : "border-red-500"
                   } 
-                  bg-gray-50 border border-gray-300 text-gray-900
-                  sm:text-sm rounded-lg block w-full p-2.5`}                  
+                  border border-gray-300 text-gray-900
+                  sm:text-sm rounded-lg block w-full p-2.5`}
                   placeholder="+1 000000000"
                   id="phone"
                   name="phone"

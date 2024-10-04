@@ -12,7 +12,6 @@ const ResetPassword = () => {
   const [newPassword, setnewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-
   const token = searchParams.get("token");
   const email = searchParams.get("email");
   const expires = searchParams.get("expires");
@@ -35,14 +34,14 @@ const ResetPassword = () => {
     }
   }, [isExpired, searchParams]);
 
-  if(!token || !email || !expires) {
-      router.push('/forgot-password');
-      return;
+  if (!token || !email || !expires) {
+    router.push("/forgot-password");
+    return;
   }
 
-  const handleSubmit = async(e) => {
-    e.preventDefault();    
-    
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
     try {
       if (!newPassword) {
         toast.error("New passowrd is requiqred");
@@ -50,11 +49,11 @@ const ResetPassword = () => {
       }
 
       if (!confirmPassword || newPassword !== confirmPassword) {
-        toast.error("Passwords do not match. Please try again.")
+        toast.error("Passwords do not match. Please try again.");
         return;
       }
 
-      const res = await resetPasswordService({token, newPassword});
+      const res = await resetPasswordService({ token, newPassword });
       if (res.data.errCode === 0) {
         toast.success(res.data.errMessage);
         router.push("/login");
@@ -64,7 +63,7 @@ const ResetPassword = () => {
     } catch (error) {
       console.error("Error resetting password:", error);
     }
-  }
+  };
 
   return (
     <form className="pt-20 h-dvh" onSubmit={handleSubmit}>
@@ -84,7 +83,7 @@ const ResetPassword = () => {
                 New Password
                 <span className="text-red-500 pl-1">*</span>
                 <input
-                  className="bg-gray-50 border border-gray-300 text-gray-900
+                  className="border border-gray-300 text-gray-900
                   sm:text-sm rounded-lg block w-full p-2.5"
                   placeholder="••••••••"
                   id="newPassword"
@@ -102,7 +101,7 @@ const ResetPassword = () => {
                 Confirm Password
                 <span className="text-red-500 pl-1">*</span>
                 <input
-                  className="bg-gray-50 border border-gray-300 text-gray-900
+                  className="border border-gray-300 text-gray-900
                   sm:text-sm rounded-lg block w-full p-2.5"
                   placeholder="••••••••"
                   id="confirmPassword"
