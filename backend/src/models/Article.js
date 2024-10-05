@@ -10,13 +10,21 @@ export const insertArticles = async (articles) => {
         [article.url],
       )
 
-      // If the article doesn't exist, insert to database  
+      // If the article doesn't exist, insert to database
       if (existingArticle.rows.length === 0) {
         const insertQuery = `
         INSERT INTO articles (source_name, author, title, description, url, url_to_image, published_at, content)
         VALUES ($1, $2, $3, $4, $5, $6, $7, $8);
         `
-        if (article.source.name === '[Removed]' ||article.source.urlToImage === null) {
+        if (
+          article.source.name === '[Removed]' ||
+          article.source.name === 'Slashdot.org' ||
+          article.source.name === 'Psychologicalscience.org' ||
+          article.source.name === 'BBC News' ||
+          article.source.name === 'Biztoc.com' ||
+          article.author === 'BARBARA ORTUTAY AP technology writer' ||
+          !article.urlToImage
+        ) {
           continue // Skip this article
         }
 

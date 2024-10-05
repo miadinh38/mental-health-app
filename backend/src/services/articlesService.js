@@ -6,7 +6,7 @@ dotenv.config()
 export const fetchAndSaveArticles = async () => {
   try {
     const apiUrl = `https://newsapi.org/v2/everything`
-    const query = `mental health AND teen`
+    const query = `mental health AND teen NOT shooting NOT prison NOT jail`
     const apiKey = process.env.NEWS_API_KEY
 
     const response = await axios.get(apiUrl, {
@@ -14,6 +14,7 @@ export const fetchAndSaveArticles = async () => {
         q: query,
         pageSize: 100,
         apiKey: apiKey,
+        excludeDomains: 'businessinsider.com'
       },
     })
     if (response.data.status === 'ok') {
