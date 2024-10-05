@@ -19,7 +19,7 @@ const Navbar = () => {
       />
 
       <ul className="flex flex-1 justify-start h-full pl-16 gap-12">
-        {["home", "about", "services", "contact"].map((label, index) => (
+        {["home", "about", "articles", "contact"].map((label, index) => (
           <Link
             key={index}
             href={label === "home" ? `/` : `${label}`}
@@ -38,7 +38,7 @@ const Navbar = () => {
               <Button
                 type="button"
                 title={`${button}`}
-                variant="btn_dark_green capitalize"
+                variant="btn_green capitalize"
               />
             </Link>
           ))}
@@ -49,7 +49,7 @@ const Navbar = () => {
           <Button
             type="button"
             title="Logout"
-            variant="btn_dark_green capitalize"
+            variant="btn_green capitalize"
             onClick={logout}
           />
         </>
