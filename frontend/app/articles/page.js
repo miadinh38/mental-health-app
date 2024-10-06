@@ -1,10 +1,9 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import SearchBar from "../../components/SearchBar";
 import ArticlesList from "../../components/ArticlesList";
-import ArticlesSearchList from "../../components/ArticlesSearchList";
 import useInsertArticles from "../../hooks/useInsertAriticles";
 import { searchedArticlesService } from "../services/articlesService.js";
 
@@ -56,7 +55,7 @@ const Articles = () => {
           <Skeleton />
         </div>
       ) : searchedArticles.length > 0 ? (
-        <ArticlesSearchList allArticles={searchedArticles} />
+        <ArticlesList allArticles={searchedArticles} />
       ) : allArticles.length > 0 ? (
         <ArticlesList allArticles={allArticles} />
       ) : (
