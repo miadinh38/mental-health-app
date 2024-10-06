@@ -21,14 +21,22 @@ export const fetchAndSaveArticles = async () => {
       const articles = response.data.articles
 
       // Save fetched articles to the database
-      await insertArticles(articles)
-      const allArticles = await getAllArticles()
-      return allArticles
+      return await insertArticles(articles)
     } else {
       console.error('Error fetching articles:', response.data)
     }
   } catch (error) {
-    console.error('Error from fetching articles: ', error)
+    console.error('Error from calling external api and saving articles: ', error)
+    throw error
+  }
+}
+
+export const getArticles = async() => {
+  try {
+    const allArticles = await getAllArticles();
+    return allArticles
+  } catch (error) {
+    console.error('Error from fetching all articles: ', error)
     throw error
   }
 }
