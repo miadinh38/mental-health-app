@@ -14,7 +14,8 @@ export const insertArticles = async (articles) => {
       if (existingArticle.rows.length === 0) {
         const insertQuery = `
         INSERT INTO articles (source_name, author, title, description, url, url_to_image, published_at, content)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8);
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+        ON CONFLICT (url) DO NOTHING;
         `
         if (
           article.source.name === '[Removed]' ||
