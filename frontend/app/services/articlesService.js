@@ -12,3 +12,7 @@ export const checkArticlesExist = async() => {
 export const fetchAllArticlesService = async() => {
   return await axios.get(`${API_URL}/articles`);
 }
+
+export const searchedArticlesService = async(searchInput) => {
+  return await axios.get(`${API_URL}/articles/search?q=${encodeURIComponent(searchInput)}`);
+}
