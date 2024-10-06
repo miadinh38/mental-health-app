@@ -1,4 +1,5 @@
-import { fetchAndSaveArticles, getArticles } from "../services/articlesService.js";
+import { query } from "express";
+import { fetchAndSaveArticles, getArticles, searchArticlesService } from "../services/articlesService.js";
 
 export const insertArticles = async(req, res) => {
   try {
@@ -34,18 +35,17 @@ export const checkArticles = async(req, res) => {
       return res.status(200).json({ hasArticle: false });
     }
   } catch (error) {
-    console.error('Error from checking articles', error.message)
+    console.error({ error: 'Error from checking articles controller', message: error.message })
   }
 }
 
-export const fetchSearchArticles = async(req, res) => {
+export const searchArticles = async(req, res) => {
   try {
-    const { input } = req.body; 
-    const allArticles = await fetchAndSaveArticles()
-    return res.status(200).json(allArticles);  
+    const queryInput = req.query.q;
+    const data = await searchArticlesService(queryInput);
+    return res.status(200).json(data);
   } catch (error) {
     res
       .status(400)
-      .json({ error: 'Error from fetching all articles controller', message: error.message })
-  }
+      .json({ error: 'Error from searching articles controller', message: error.message })  }
 }
