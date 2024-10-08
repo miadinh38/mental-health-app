@@ -34,6 +34,7 @@ const Articles = () => {
           );
           setSearchedArticles(response.data.paginatedArticles);
           setLength(response.data.totalCount);
+          setLoading(false);
         } else {
           // Insert articles to db
           await insertArticlesService();
@@ -117,24 +118,26 @@ const Articles = () => {
         />
       </div>
 
-      <Pagination
-        length={length}
-        articlesPerPage={limit}
-        handlePagination={handlePagination}
-        currentPage={currentPage}
-      />
+      {length > 0 && (
+        <Pagination
+          length={length}
+          articlesPerPage={limit}
+          handlePagination={handlePagination}
+          currentPage={currentPage}
+        />
+      )}
 
       {/* Render all or searched articles */}
       {loading ? (
         <div className="h-lvh">
           <Skeleton />
         </div>
-      ) : searchedArticles.length > 0 ? (
+      ) : searchedArticles?.length > 0 ? (
         <ArticlesList allArticles={searchedArticles} />
-      ) : allArticles.length > 0 ? (
+      ) : allArticles?.length > 0 ? (
         <ArticlesList allArticles={allArticles} />
       ) : (
-        <p>No articles found.</p>
+        <p className="flex justify-center h-lvh">No articles found.</p>
       )}
     </div>
   );
