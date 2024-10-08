@@ -1,5 +1,4 @@
-import { query } from "express";
-import { fetchAndSaveArticles, getArticles, searchArticlesService } from "../services/articlesService.js";
+import { fetchAndSaveArticles, getArticlesWithPagination, searchArticlesService } from "../services/articlesService.js";
 
 export const insertArticles = async(req, res) => {
   try {
@@ -15,37 +14,33 @@ export const insertArticles = async(req, res) => {
   }
 }
 
-export const fetchAllArticles = async(req, res) => {
+export const searchArticles = async(req, res) => {
   try {
-    const allArticles = await getArticles()
-    return res.status(200).json(allArticles);  
+    const queryInput = req.query.q;
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const offset = (page - 1) * limit;
+
+    const { paginatedArticles, totalCount } = await searchArticlesService(queryInput, limit, offset);
+    return res.status(200).json({ paginatedArticles, totalCount });
+  } catch (error) {
+    res
+      .status(400)
+      .json({ error: 'Error from searching articles controller', message: error.message })  }
+}
+
+
+export const fetchAllArticlesWithPagination = async(req, res) => {
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const offset = (page - 1) * limit;
+
+    const { articles, totalCount } = await getArticlesWithPagination(limit, offset)
+    return res.status(200).json({ articles, totalCount });  
   } catch (error) {
     res
       .status(400)
       .json({ error: 'Error from fetching all articles controller', message: error.message })
   }
-}
-
-export const checkArticles = async(req, res) => {
-  try {
-    const result = await getArticles()
-    if (result.length > 0 ){
-      return res.status(200).json({ hasArticle: true });
-    } else {
-      return res.status(200).json({ hasArticle: false });
-    }
-  } catch (error) {
-    console.error({ error: 'Error from checking articles controller', message: error.message })
-  }
-}
-
-export const searchArticles = async(req, res) => {
-  try {
-    const queryInput = req.query.q;
-    const data = await searchArticlesService(queryInput);
-    return res.status(200).json(data);
-  } catch (error) {
-    res
-      .status(400)
-      .json({ error: 'Error from searching articles controller', message: error.message })  }
 }
