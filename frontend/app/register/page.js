@@ -4,9 +4,11 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { registerUserService } from "../services/authService";
 import { useRouter } from "next/navigation";
+import { useAuth } from "../../hooks/useAuth";
 
 const Register = () => {
   const router = useRouter();
+  const { checkAuthentication } = useAuth();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -150,6 +152,7 @@ const Register = () => {
         if (typeof window !== "undefined") {
           localStorage.setItem("token", data.token);
         }
+        checkAuthentication(data.token);
         router.push("/");
       } else {
         toast.error(data.errMessage);
