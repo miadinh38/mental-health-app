@@ -1,5 +1,28 @@
 # TeenVent
-With personalized recommendations and evidence-based tools, the app aims to help individuals manage their mental health, set and achieve wellness goals, and foster a balanced lifestyle. Whether you're seeking daily self-care practices or professional support, TeenVent provides a convenient and accessible solution for maintaining mental well-being and improving overall quality of life.
+TeenVent is a mental health app designed for teens, offering personalized recommendations and evidence-based tools to help manage mental well-being. This is a safe space where teens can share their thoughts and feelings openly while receiving support from their peers. This supportive environment encourages honest conversations, helping users feel understood and connected as they navigate their mental health journeys together.
+
+
+# MVP Features:
+✅ **User Authentication:**
+Secure authentication using JSON Web Tokens (JWT). Users can reset passwords via email confirmation using the SendGrid API.
+
+✅ **Articles & News:**
+Fetch and display articles using News API, with pagination for easy navigation.
+
+✅ **Search Function:**
+A robust search that allows users to find articles while filtering out sensitive and negative words suitable for teenagers.
+
+🔄 **Forum / Anonymity (In Progress):**
+Users can anonymously share their feelings and seek advice in a supportive forum environment.
+
+🔜 **Chatbot:**
+Interact with both an admin and an AI-powered chatbot for immediate assistance.
+
+🔜 **Mood Tracking:**
+Users can select and archive their daily mood in a calendar for emotional monitoring.
+
+🔜 **Admin Dashboard:**
+An admin dashboard for managing user accounts, moderating content, and viewing analytics to enhance user experience and ensure community safety.
 
 # Teck stack:
 
