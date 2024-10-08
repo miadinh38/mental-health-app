@@ -36,9 +36,11 @@ const Articles = () => {
           setLength(response.data.totalCount);
           setLoading(false);
         } else {
-          // Insert articles to db
-          await insertArticlesService();
-
+          if(length === 0) {
+            // Insert articles to db
+            await insertArticlesService();
+          }
+          
           // Fetch articles with pagination
           const res = await fetchAllArticlesService(currentPage, limit);
           setAllArticles(res.data.articles);
