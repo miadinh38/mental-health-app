@@ -3,6 +3,16 @@ import db from './db/dbConfig.js'
 //Save articles from external api to db
 export const insertArticles = async (articles) => {
   try {
+    // Check the current count of articles
+    const countResult = await db.query('SELECT COUNT(*) FROM articles;')
+    const articleCount = parseInt(countResult.rows[0].count, 10)
+
+    // If the article limit is reached, skip inserting new articles
+    if (articleCount >= 100) {
+      console.log('Article limit reached. No new articles will be inserted.')
+      return;
+    }
+    
     // Check for existing articles
     for (const article of articles) {
       const existingArticle = await db.query(
@@ -61,17 +71,17 @@ export const getArticles = async (limit, offset) => {
       FROM articles
       ORDER BY published_at DESC
       LIMIT $1 OFFSET $2
-    ;`;
+    ;`
 
-    const resultArticles = await db.query(articlesQuery, [limit, offset]);
-    const articles = resultArticles.rows;
+    const resultArticles = await db.query(articlesQuery, [limit, offset])
+    const articles = resultArticles.rows
 
     // Fetch total count of articles
-    const countQuery = `SELECT COUNT(*) FROM articles`;
-    const result = await db.query(countQuery);
-    const totalCount = parseInt(result.rows[0].count, 10);   
+    const countQuery = `SELECT COUNT(*) FROM articles`
+    const result = await db.query(countQuery)
+    const totalCount = parseInt(result.rows[0].count, 10)
 
-    return {articles, totalCount}
+    return { articles, totalCount }
   } catch (error) {
     console.error('Get article with pagination:', error)
   }
