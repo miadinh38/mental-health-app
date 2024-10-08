@@ -1,10 +1,7 @@
 "use client";
 import Button from "../components/Button";
-import useInsertArticles from "../hooks/useInsertAriticles";
 
 export default function HomePage() {
-  useInsertArticles();
-
   return (
     <div
       className="bg-cover bg-no-repeat h-screen flex flex-col"
