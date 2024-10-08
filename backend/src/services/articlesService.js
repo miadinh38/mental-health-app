@@ -7,7 +7,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 const apiUrl = `https://newsapi.org/v2/everything`
-const query = `mental health AND teen NOT shooting NOT prison NOT arrest NOT jail NOT sex NOT suicidal NOT drug`
+const query = `mental health AND teens NOT shooting NOT prison NOT arrest NOT jail NOT sex NOT suicidal NOT drug NOT death NOT murder NOT suicide`
 const apiKey = process.env.NEWS_API_KEY
 
 export const fetchAndSaveArticles = async () => {
