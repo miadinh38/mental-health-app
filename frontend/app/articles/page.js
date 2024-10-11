@@ -103,11 +103,11 @@ const Articles = () => {
     <div className="max-container padding-container">
       <p className="flexCenter bold-32 my-5 p-5">Articles & News</p>
 
-      <div className="flex flexCenter gap-4 m-10">
+      <div className="flex flexCenter my-10 gap-4 xs:gap-1.5 px-5">
         <button
           type="button"
           onClick={handleAllButton}
-          className="btn_dark_green rounded-xl "
+          className="btn_dark_green rounded-xl xs:px-3 xs:text-sm xs:rounded-md"
         >
           ALL
         </button>
