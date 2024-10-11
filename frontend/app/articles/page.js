@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import SearchBar from "../../components/SearchBar";
-import ArticlesList from "../../components/ArticlesList";
+import ArticlesList from "../../components/cards/ArticlesList";
 import {
   insertArticlesService,
   searchedArticlesService,
