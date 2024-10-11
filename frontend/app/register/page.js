@@ -172,7 +172,7 @@ const Register = () => {
 
             <div>
               <label className="block mb-2 text-sm font-medium text-gray-900">
-                Your Name
+                Full Name
                 <span className="text-red-500 pl-1">*</span>
                 <input
                   placeholder="John Doe"

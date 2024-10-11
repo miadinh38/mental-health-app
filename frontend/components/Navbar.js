@@ -19,7 +19,7 @@ const Navbar = () => {
       />
 
       <ul className="flex flex-1 justify-start h-full pl-16 gap-12">
-        {["home", "about", "articles", "contact"].map((label, index) => (
+        {["home", "about", "articles", "contact", "community"].map((label, index) => (
           <Link
             key={index}
             href={label === "home" ? `/` : `${label}`}
