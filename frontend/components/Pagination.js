@@ -8,7 +8,7 @@ const Pagination = ({
   currentPage,
 }) => {
   const paginationNumbers = [];
-  const totalPages = Math.ceil(length / articlesPerPage);
+  const totalPages = Math.min(Math.ceil(length / articlesPerPage), 10);
 
   for (let i = 1; i <= totalPages; i++) {
     paginationNumbers.push(i);
