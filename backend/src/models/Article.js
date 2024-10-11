@@ -1,18 +1,43 @@
 import db from './db/dbConfig.js'
 
+export const removeArticles = async () => {
+  try {
+    // Check the current count of articles
+    let countResult = await db.query('SELECT COUNT(*) FROM articles;')
+    let articleCount = parseInt(countResult.rows[0].count, 10)
+    console.log('Articles count before deletion:', articleCount)
+
+    // If the article limit is reached, skip inserting new articles
+    while (articleCount >= 100) {
+      console.log('Article limit reached. Removing the oldest article.')
+      await db.query(`
+            DELETE FROM articles
+            WHERE id = (
+              SELECT id FROM articles
+              ORDER BY published_at ASC
+              LIMIT 1
+            );
+          `)
+      countResult = await db.query('SELECT COUNT(*) FROM articles;')
+      articleCount = parseInt(countResult.rows[0].count, 10);
+    }
+
+    // Reset the sequence after deletions
+    // await db.query('ALTER SEQUENCE articles_id_seq RESTART WITH 1;');
+
+    const countAfter = await db.query('SELECT COUNT(*) FROM articles;');
+    console.log('Articles count after deletion:', countAfter.rows[0].count);
+  } catch (error) {
+    console.error('Error removing article:', error)
+  }
+}
+
 //Save articles from external api to db
 export const insertArticles = async (articles) => {
   try {
-    // Check the current count of articles
-    const countResult = await db.query('SELECT COUNT(*) FROM articles;')
-    const articleCount = parseInt(countResult.rows[0].count, 10)
+    await removeArticles()
+    console.log('Article removed.')
 
-    // If the article limit is reached, skip inserting new articles
-    if (articleCount >= 100) {
-      console.log('Article limit reached. No new articles will be inserted.')
-      return;
-    }
-    
     // Check for existing articles
     for (const article of articles) {
       const existingArticle = await db.query(
