@@ -58,3 +58,24 @@ export const updateAgreementSigned = async (userId) => {
     throw error
   }
 }
+
+// Get community user ID by user ID
+export const getCommunityUserIdByToken = async (userId) => {
+  try {
+    const queryString = `
+      SELECT id
+      FROM community_users 
+      WHERE user_id = $1;`;
+
+    const result = await db.query(queryString, [userId]);
+
+    if (result.rows.length > 0) {
+      return result.rows[0].id;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error('Error getting community user ID by token:', error);
+    throw error;
+  }
+};
