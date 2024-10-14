@@ -7,7 +7,6 @@ export const insertPost = async (communityUserId, content) => {
     const queryString = `INSERT INTO posts(community_user_id, content) VALUES ($1, $2) RETURNING *;`
 
     const result = await db.query(queryString, [communityUserId, content])
-    console.log('From insertPost model: ', result.rows)
     return result.rows
   } catch (error) {
     console.error('Error from insertPost model: ', error.message)
@@ -46,7 +45,7 @@ export const deletePostQuery = async(postId) => {
     const queryString = `DELETE FROM posts WHERE id = $1 RETURNING *;`
     return await db.query(queryString, [postId])
   } catch (error) {
-    console.error('Error from updatePost model: ', error.message)
+    console.error('Error from deletePost model: ', error.message)
     throw error
   }
 }
