@@ -21,7 +21,7 @@ const getHelpNow = () => {
 
       <div className='my-10'>
         United States Emergency: 911 Suicide & Crisis Lifeline: 988 Crisis Text
-        Line: Text "DESERVE" TO 741-741 Essential Local And Community Services:
+        Line: Text &quot;DESERVE&quot; TO 741-741 Essential Local And Community Services:
         211, https://www.211.org/ Lifeline Crisis Chat (Online Live Messaging):
         988, https://988lifeline.org/chat LGBT Hotline: 1-888-843-4564 National
         Council On Alcoholism & Drug Dependency Hope Line: 1-800-622-2255
@@ -39,8 +39,8 @@ const getHelpNow = () => {
         ability, reputation, or quality of services provided by the entities or
         individuals listed above. Inclusion on this list does not constitute an
         endorsement by TeenVent. The order does not imply any ranking or
-        evaluation. TeenVent cannot vouch for the contact information's
-        accuracy; If you discover any inaccuracies in the contact information,
+        evaluation. TeenVent cannot vouch for the accuracy of the contact information provided. 
+        If you discover any inaccuracies in the contact information,
         please email us at teenvent@gmail.com so we can update it.
       </div>
     </div>

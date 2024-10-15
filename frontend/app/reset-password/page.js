@@ -32,7 +32,7 @@ const ResetPassword = () => {
         "Your reset password link is expired. Please request a new password reset link."
       );
     }
-  }, [isExpired, searchParams]);
+  }, [isExpired, searchParams, router]);
 
   if (!token || !email || !expires) {
     router.push("/forgot-password");

@@ -34,7 +34,6 @@ const Articles = () => {
           );
           setSearchedArticles(response.data.paginatedArticles);
           setLength(response.data.totalCount);
-          setLoading(false);
         } else {
           if(length === 0) {
             // Insert articles to db
@@ -45,15 +44,16 @@ const Articles = () => {
           const res = await fetchAllArticlesService(currentPage, limit);
           setAllArticles(res.data.articles);
           setLength(res.data.totalCount);
-          setLoading(false);
         }
       } catch (error) {
         console.error("Error during articles check or insertion:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchArticles();
-  }, [currentPage]);
+  }, [currentPage, length]);
 
   const handleSearchButton = async () => {
     if (!searchInput) return;
