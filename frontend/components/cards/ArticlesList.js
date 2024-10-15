@@ -44,7 +44,7 @@ const ArticlesList = ({ allArticles }) => {
             href={article.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="border border-green-50 bg-green-50 px-2 py-2 text-white regular-14 rounded-md hover:bg-black"
+            className="border border-green-600 bg-green-600 px-2 py-2 text-white regular-14 rounded-md hover:bg-black"
           >
             Read More
           </Link>

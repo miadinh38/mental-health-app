@@ -1,5 +1,4 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { FaSearch } from "react-icons/fa";
 
 export default function SearchBar({ onChange, value, onClickSearch }) {
   return (
@@ -24,7 +23,7 @@ export default function SearchBar({ onChange, value, onClickSearch }) {
         className="flex items-center whitespace-nowrap rounded 
           px-3 py-1.5 text-neutral-700 hover:cursor-pointer hover:text-green-500"
       >
-        <FontAwesomeIcon icon={faSearch} onClick={onClickSearch} />
+        <FaSearch onClick={onClickSearch} />
       </span>
     </div>
   );
