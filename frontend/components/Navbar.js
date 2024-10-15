@@ -38,7 +38,8 @@ const Navbar = () => {
               <Button
                 type="button"
                 title={`${button}`}
-                variant="btn_green capitalize"
+                // variant={`${button === "login" ? 'btn_white' : 'btn_green'} capitalize`}
+                variant='btn_green capitalize'
               />
             </Link>
           ))}
