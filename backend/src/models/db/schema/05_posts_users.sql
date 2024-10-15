@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS posts_users CASCADE;
+
+CREATE TABLE posts_users (
+  id SERIAL PRIMARY KEY NOT NULL,
+  community_user_id INTEGER REFERENCES community_users(id) ON DELETE CASCADE,
+  post_id INTEGER REFERENCES posts(id) ON DELETE CASCADE,
+  isLiked BOOLEAN DEFAULT FALSE,
+  isSaved BOOLEAN DEFAULT FALSE
+);

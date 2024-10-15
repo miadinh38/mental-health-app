@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import SearchBar from "../../components/SearchBar";
-import ArticlesList from "../../components/ArticlesList";
+import ArticlesList from "../../components/cards/ArticlesList";
 import {
   insertArticlesService,
   searchedArticlesService,
@@ -34,7 +34,6 @@ const Articles = () => {
           );
           setSearchedArticles(response.data.paginatedArticles);
           setLength(response.data.totalCount);
-          setLoading(false);
         } else {
           if(length === 0) {
             // Insert articles to db
@@ -45,15 +44,16 @@ const Articles = () => {
           const res = await fetchAllArticlesService(currentPage, limit);
           setAllArticles(res.data.articles);
           setLength(res.data.totalCount);
-          setLoading(false);
         }
       } catch (error) {
         console.error("Error during articles check or insertion:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchArticles();
-  }, [currentPage]);
+  }, [currentPage, length]);
 
   const handleSearchButton = async () => {
     if (!searchInput) return;
@@ -103,11 +103,11 @@ const Articles = () => {
     <div className="max-container padding-container">
       <p className="flexCenter bold-32 my-5 p-5">Articles & News</p>
 
-      <div className="flex flexCenter gap-4 m-10">
+      <div className="flex flexCenter my-10 gap-4 xs:gap-1.5 px-5">
         <button
           type="button"
           onClick={handleAllButton}
-          className="btn_dark_green rounded-xl "
+          className="btn_dark_green rounded-xl xs:px-3 xs:text-sm xs:rounded-md"
         >
           ALL
         </button>
