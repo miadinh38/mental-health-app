@@ -37,3 +37,17 @@ export const createNewCommunityUser = async (userId, nickname) => {
     throw error
   }
 }
+
+export const checkCommunityUserExistService = async (userId) => {
+  try {
+    const communityUser = await checkNicknameExists(userId)
+    if (communityUser.length > 0) {
+      return true
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.error('Error from checkCommunityUserExistService service: ', error)
+    throw error
+  }
+}
