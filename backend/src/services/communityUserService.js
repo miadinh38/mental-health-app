@@ -42,7 +42,10 @@ export const checkCommunityUserExistService = async (userId) => {
   try {
     const communityUser = await checkNicknameExists(userId)
     if (communityUser.length > 0) {
-      return true
+      return {
+        has_joined: true,
+        communityUser
+      }
     } else {
       return false
     }

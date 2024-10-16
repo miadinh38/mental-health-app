@@ -4,8 +4,6 @@ import { getAllPosts, insertPost } from '../models/Post.js'
 export const createPostService = async (userId, content) => {
   try {
     const communityUserId = await getCommunityUserIdByToken(userId)
-    console.log('Community User Id', communityUserId)
-
     const newPost = await insertPost(communityUserId, content)
     return newPost
   } catch (error) {
