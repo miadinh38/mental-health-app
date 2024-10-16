@@ -2,14 +2,23 @@ import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import { FaRegComment, FaRegHeart, FaHeart } from "react-icons/fa";
 import { PiShareFat } from "react-icons/pi";
-import { CiEdit, CiTrash, CiSquareMore } from "react-icons/ci";
+import { CiEdit, CiTrash } from "react-icons/ci";
 import { MdMoreHoriz } from "react-icons/md";
-import { deletePost } from "../../app/services/postsService";
+import { deletePost, updatePost } from "../../app/services/postsService";
 
-const PostCard = ({ key, id, content, created_at, currentCommunityUser, setUpdatePost }) => {
+const PostCard = ({
+  key,
+  id,
+  content,
+  created_at,
+  currentCommunityUser,
+  setUpdatePost,
+}) => {
   const [isLiked, setIsLiked] = useState(false);
   const [isComment, setIsComment] = useState(false);
   const [isMore, setIsMore] = useState(false);
+  const [isEditing, setIsEditing] = useState(null);
+  const [editContent, setEditContent] = useState("");
   const dropdownRef = useRef(null);
 
   const handleToggle = () => {
@@ -35,15 +44,36 @@ const PostCard = ({ key, id, content, created_at, currentCommunityUser, setUpdat
 
   const handleEditPost = () => {
     console.log("Edit clicked");
+    setIsMore(false);
+    setIsEditing(id);
+    setEditContent(content);
+  };
+
+  const handleSaveChanges = async () => {
+    console.log("saved");
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token");
+
+      try {
+        await updatePost(token, { content: editContent }, id);
+        setUpdatePost((prev) => !prev);
+        setIsEditing(null);
+      } catch (error) {
+        console.error("Error editing post:", error);
+      }
+    }
   };
 
   const handleDeletePost = async () => {
-    console.log("Delete clicked");
     if (typeof window !== "undefined") {
-      const token = localStorage.getItem("token")
-      await deletePost(token, id);
-      setIsMore(false)
-      setUpdatePost((prev) => !prev)
+      const token = localStorage.getItem("token");
+      try {
+        await deletePost(token, id);
+        setIsMore(false);
+        setUpdatePost((prev) => !prev);
+      } catch (error) {
+        console.error("Error deleting post:", error);
+      }
     }
   };
 
@@ -66,8 +96,28 @@ const PostCard = ({ key, id, content, created_at, currentCommunityUser, setUpdat
             <p className="font-semibold text-green-800">
               {currentCommunityUser}
             </p>
-            <p className="whitespace-pre-wrap mt-2 regular-14">{content}</p>
-            <div className="mt-3 flex flex-col gap-3">
+
+            {isEditing === id ? (
+              <>
+                <textarea
+                  type="text"
+                  value={editContent}
+                  onChange={(e) => setEditContent(e.target.value)}
+                  className="border border-gray-300 rounded-md p-2 w-full focus:outline-none mt-2"
+                  rows="4"
+                />
+                <button
+                  onClick={handleSaveChanges}
+                  className="btn_green w-20 rounded-xl mt-3"
+                >
+                  Save
+                </button>
+              </>
+            ) : (
+              <p className="whitespace-pre-wrap mt-2 regular-14">{content}</p>
+            )}
+
+            <div className="mt-5 flex flex-col gap-3">
               <div className="flex gap-5">
                 <div onClick={handleToggle} className="cursor-pointer">
                   {isLiked ? (
@@ -77,18 +127,18 @@ const PostCard = ({ key, id, content, created_at, currentCommunityUser, setUpdat
                   )}
                 </div>
                 <FaRegComment className="regular-18 cursor-pointer" />
-                <PiShareFat className="bold-20 cursor-pointer" />
+                <PiShareFat className="regular-20 cursor-pointer" />
               </div>
             </div>
           </div>
 
           <div className="relative" ref={dropdownRef}>
             <MdMoreHoriz
-              className="regular-18 cursor-pointer"
+              className="regular-20 cursor-pointer"
               onClick={handleMore}
             />
             {isMore && (
-              <div className="absolute right-0 mt-2 w-32 bg-white border border-gray-300 rounded shadow-lg z-10">
+              <div className="absolute right-0 mt-1 w-28 bg-white border border-gray-100 rounded shadow-lg z-10">
                 <div
                   className="flex items-center p-2 hover:bg-gray-100 cursor-pointer regular-12"
                   onClick={handleEditPost}
