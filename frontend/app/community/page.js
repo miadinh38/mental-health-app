@@ -40,7 +40,7 @@ const Community = () => {
   }, []);
 
   return (
-    <div className="padding-container max-container bg-green-5">
+    <div className="padding-container max-container">
       {!isAuth && (
         <div className="p-4 rounded shadow-md">
           <p className="flexCenter bold-32 p-5 text-green-600">
