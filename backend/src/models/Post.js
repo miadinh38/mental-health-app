@@ -17,7 +17,10 @@ export const insertPost = async (communityUserId, content) => {
 // Select all posts
 export const getAllPosts = async() => {
   try {
-    const query = `SELECT * FROM posts ORDER BY created_at DESC;`
+    const query = `SELECT p.id, p.content, p.created_at, cu.nickname 
+    FROM posts p
+    JOIN community_users cu ON p.community_user_id = cu.id
+    ORDER BY created_at DESC;`
     const result =  await db.query(query);
     return result.rows; 
   } catch (error) {
