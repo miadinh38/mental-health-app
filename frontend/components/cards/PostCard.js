@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 import { FaRegComment, FaRegHeart, FaHeart } from "react-icons/fa";
 import { PiShareFat } from "react-icons/pi";
 import { CiEdit, CiTrash } from "react-icons/ci";
@@ -123,22 +123,22 @@ const PostCard = ({
   };
 
   return (
-    <motion.article 
+    <motion.article
       className="flex w-full flex-col rounded-xl bg-pink-5 bg-opacity-80 p-7 shadow-md"
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 20 }}
-      transition={{duration: 0.5 }}
+      transition={{ duration: 0.5 }}
       whileHover={{ scale: 1.005, boxShadow: "0 4px 15px rgba(0, 0, 0, 0.2)" }}
     >
       <div className-="flex items-start justify-between">
         <div className="flex w-full flex-1 flex-row gap-4">
           <div className="flex flex-col items-center">
             <Image
-              src="/img2.webp"
+              src="/img1.png"
               alt="user profile"
-              width={40}
-              height={40}
+              width={50}
+              height={50}
               className="rounded-full"
             />
             <div className="post-card_bar" />
@@ -146,8 +146,10 @@ const PostCard = ({
 
           <div className="flex w-full flex-col">
             <div className="flex flexStart">
-            <p className="font-semibold text-green-800 capitalize">{author}</p>
-            <span className="regular-12 text-gray-30 ml-2">• {timeAgo}</span>
+              <p className="font-semibold text-green-800 capitalize">
+                {author}
+              </p>
+              <span className="regular-12 text-gray-30 ml-2">• {timeAgo}</span>
             </div>
 
             {isEditing === id ? (
@@ -184,13 +186,13 @@ const PostCard = ({
               </div>
             </div>
           </div>
-
+        
           <div className="relative" ref={dropdownRef}>
             <MdMoreHoriz
-              className="regular-20 cursor-pointer"
-              onClick={handleMore}
+              className={`regular-20 cursor-pointer ${currentCommunityUser === author ? '' : 'opacity-0'}`}
+              onClick={currentCommunityUser === author ? handleMore : null}
             />
-            {isMore && (
+            {isMore && currentCommunityUser === author &&(
               <div className="absolute right-0 mt-1 w-28 bg-white border border-gray-100 rounded shadow-lg z-10">
                 <div
                   className="flex items-center p-2 hover:bg-gray-100 cursor-pointer regular-12"
@@ -207,11 +209,14 @@ const PostCard = ({
               </div>
             )}
           </div>
+          
         </div>
 
         <div className="flex flex-col mt-5">
-          <p className="regular-12 text-gray-30">5 Likes • 10 Comments</p>
-          <p className="regular-12 text-gray-30">{formattedDate} • {formattedTime}</p>
+          {/* <p className="regular-12 text-gray-30">5 Likes • 10 Comments</p> */}
+          <p className="regular-12 text-gray-30">
+            {formattedDate} • {formattedTime}
+          </p>
         </div>
       </div>
     </motion.article>

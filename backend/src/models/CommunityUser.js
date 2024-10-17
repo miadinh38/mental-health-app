@@ -14,12 +14,14 @@ export const checkNicknameExists = async (userId) => {
     throw error
   }
 }
+
 // Get users by nickname
 export const getUserByNickname = async (nickname) => {
   try {
     const queryString = `SELECT * 
       FROM community_users 
-      WHERE nickname = $1;`
+      WHERE nickname ILIKE $1
+      ;`
 
     const result = await db.query(queryString, [nickname])
     return result.rows
