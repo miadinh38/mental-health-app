@@ -5,7 +5,6 @@ export const removeArticles = async () => {
     // Check the current count of articles
     let countResult = await db.query('SELECT COUNT(*) FROM articles;')
     let articleCount = parseInt(countResult.rows[0].count, 10)
-    console.log('Articles count before deletion:', articleCount)
 
     // If the article limit is reached, skip inserting new articles
     while (articleCount >= 100) {
@@ -18,15 +17,11 @@ export const removeArticles = async () => {
               LIMIT 1
             );
           `)
-      countResult = await db.query('SELECT COUNT(*) FROM articles;')
-      articleCount = parseInt(countResult.rows[0].count, 10);
     }
 
     // Reset the sequence after deletions
     // await db.query('ALTER SEQUENCE articles_id_seq RESTART WITH 1;');
 
-    const countAfter = await db.query('SELECT COUNT(*) FROM articles;');
-    console.log('Articles count after deletion:', countAfter.rows[0].count);
   } catch (error) {
     console.error('Error removing article:', error)
   }
@@ -36,7 +31,6 @@ export const removeArticles = async () => {
 export const insertArticles = async (articles) => {
   try {
     await removeArticles()
-    console.log('Article removed.')
 
     // Check for existing articles
     for (const article of articles) {
