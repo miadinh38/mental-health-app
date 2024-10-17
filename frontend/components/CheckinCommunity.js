@@ -63,7 +63,7 @@ const CheckinCommunity = ({ onPrevious, next, setHasJoined }) => {
               }`}
               disabled={!isChecked || !nickname}
             >
-              Submit
+              Join Now
             </button>
           </div>
         </form>
