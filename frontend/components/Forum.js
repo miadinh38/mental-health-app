@@ -23,7 +23,7 @@ const Forum = ({ currentCommunityUser }) => {
   }, [updatePost]);
   return (
     <div>
-      <div className="flex flexCenter bold-32 p-5 text-green-600">
+      <div className="flex flexCenter bold-32 p-5 text-green-800">
         TeenVent Forum
       </div>
 

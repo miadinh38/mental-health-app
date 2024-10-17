@@ -43,7 +43,7 @@ const Community = () => {
     <div className="padding-container max-container">
       {!isAuth && (
         <div className="p-4 rounded shadow-md">
-          <p className="flexCenter bold-32 p-5 text-green-600">
+          <p className="flexCenter bold-32 p-5 text-green-800">
             Join the TeenVent Community
           </p>
           <CommunityInfo />
@@ -64,7 +64,7 @@ const Community = () => {
 
       {isAuth && !hasJoined && (
         <div className="p-4 rounded shadow-md">
-          <p className="flexCenter bold-32 p-5 text-green-600">
+          <p className="flexCenter bold-32 p-5 text-green-800">
             Join the TeenVent Community
           </p>
 
