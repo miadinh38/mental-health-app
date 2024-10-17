@@ -135,10 +135,10 @@ const PostCard = ({
         <div className="flex w-full flex-1 flex-row gap-4">
           <div className="flex flex-col items-center">
             <Image
-              src="/img2.webp"
+              src="/img1.png"
               alt="user profile"
-              width={40}
-              height={40}
+              width={50}
+              height={50}
               className="rounded-full"
             />
             <div className="post-card_bar" />
