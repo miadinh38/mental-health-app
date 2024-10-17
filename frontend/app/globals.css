@@ -120,12 +120,16 @@ body {
     @apply border-white bg-white px-8 py-3 text-gray-90;
   }
   .btn_green  { 
-    @apply border-green-600 bg-green-600 px-8 py-5 text-white hover:bg-black;
+    @apply border-green-600 bg-green-600 px-5 py-3 text-white hover:bg-black;
   }
   .btn_dark_green { 
     @apply bg-green-900 px-6 py-2 text-white transition-all hover:bg-black;
   }
   .btn_dark_green_outline  { 
     @apply border-gray-20 bg-green-90 px-8 py-5 text-white;
-    }
+  }
+
+  .post-card_bar {
+    @apply relative mt-2 w-0.5 grow rounded-full bg-green-800 opacity-10;
+  }
 }

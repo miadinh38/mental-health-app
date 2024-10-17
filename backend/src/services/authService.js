@@ -54,7 +54,7 @@ export const registerUser = async ({
     const token = generateToken(newUser)
 
     return {
-      errMessage: 'User created succesfully!',
+      errMessage: 'Account created succesfully!',
       errCode: 0,
       token,
     }
