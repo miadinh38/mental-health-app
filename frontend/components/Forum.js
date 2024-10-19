@@ -14,9 +14,15 @@ const Forum = ({ currentCommunityUser }) => {
 
   useEffect(() => {
     const fetchAllPosts = async () => {
-      const result = await fetchPosts();
-      console.log("All posts", result.data);
-      setPosts(result.data);
+      try {
+        if (typeof window !== "undefined") {
+          const token = localStorage.getItem("token");
+          const result = await fetchPosts(token);
+          setPosts(result.data);
+        }
+      } catch (error) {
+        console.error("Error from fetching posts: ", error)
+      }
     };
 
     fetchAllPosts();
