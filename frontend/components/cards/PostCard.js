@@ -6,6 +6,10 @@ import { PiShareFat } from "react-icons/pi";
 import { CiEdit, CiTrash } from "react-icons/ci";
 import { MdMoreHoriz } from "react-icons/md";
 import { deletePost, updatePost } from "../../app/services/postsService";
+import CreateCommentForm from "../forms/CreateCommentForm";
+import CommentCard from "./CommentCard";
+import { fetchComments } from "../../app/services/commentsService";
+import { formatDate } from "../../app/utils/formatDate";
 
 const PostCard = ({
   key,
@@ -16,56 +20,16 @@ const PostCard = ({
   setUpdatePost,
   author,
 }) => {
+  const { formattedDate, formattedTime, timeAgo } = formatDate(created_at)
   const [isLiked, setIsLiked] = useState(false);
   const [isComment, setIsComment] = useState(false);
   const [isMore, setIsMore] = useState(false);
   const [isEditing, setIsEditing] = useState(null);
   const [editContent, setEditContent] = useState("");
+  const [comments, setComments] = useState([]);
+  const [updateComment, setUpdateComment] = useState(false);
+
   const dropdownRef = useRef(null);
-
-  const postDate = new Date(created_at);
-
-  // Format the date
-  const formattedDate = postDate.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
-
-  // Format the time
-  const formattedTime = postDate.toLocaleTimeString("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: true,
-  });
-
-  // Calculate time ago
-  const currentTime = new Date();
-  const differenceInMs = currentTime - postDate;
-  const differenceInMinutes = Math.floor(differenceInMs / 1000 / 60);
-  let timeAgo;
-
-  if (differenceInMinutes < 1) {
-    timeAgo = "Just now";
-  } else if (differenceInMinutes === 1) {
-    timeAgo = "1 min ago";
-  } else if (differenceInMinutes < 60) {
-    timeAgo = `${differenceInMinutes} mins ago`;
-  } else {
-    const differenceInHours = Math.floor(differenceInMinutes / 60);
-    if (differenceInHours === 1) {
-      timeAgo = "1 hour ago";
-    } else if (differenceInHours < 24) {
-      timeAgo = `${differenceInHours} hours ago`;
-    } else {
-      const differenceInDays = Math.floor(differenceInHours / 24);
-      if (differenceInDays === 1) {
-        timeAgo = "1 day ago";
-      } else {
-        timeAgo = `${differenceInDays} days ago`;
-      }
-    }
-  }
 
   const handleToggle = () => {
     setIsLiked((prev) => !prev);
@@ -98,7 +62,6 @@ const PostCard = ({
     console.log("saved");
     if (typeof window !== "undefined") {
       const token = localStorage.getItem("token");
-
       try {
         await updatePost(token, { content: editContent }, id);
         setUpdatePost((prev) => !prev);
@@ -122,16 +85,35 @@ const PostCard = ({
     }
   };
 
+  // Fetching all comments function
+  useEffect(() => {
+    const fetchAllComments = async () => {
+      try {
+        if (typeof window !== "undefined") {
+          const token = localStorage.getItem("token");
+
+          const result = await fetchComments(token, id);
+          // console.log("All Comments", result.data);
+          setComments(result.data);
+        }
+      } catch (error) {
+        console.error("Error from fetching comments: ", error);
+      }
+    };
+
+    fetchAllComments();
+  }, [updateComment]);
+
   return (
     <motion.article
-      className="flex w-full flex-col rounded-xl bg-pink-5 bg-opacity-80 p-7 shadow-md"
+      className="flex w-full flex-col rounded-xl bg-green-5 bg-opacity-30 p-7 shadow-md"
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 20 }}
       transition={{ duration: 0.5 }}
       whileHover={{ scale: 1.005, boxShadow: "0 4px 15px rgba(0, 0, 0, 0.2)" }}
     >
-      <div className-="flex items-start justify-between">
+      <div className="flex flex-col items-start justify-between">
         <div className="flex w-full flex-1 flex-row gap-4">
           <div className="flex flex-col items-center">
             <Image
@@ -186,13 +168,15 @@ const PostCard = ({
               </div>
             </div>
           </div>
-        
+
           <div className="relative" ref={dropdownRef}>
             <MdMoreHoriz
-              className={`regular-20 cursor-pointer ${currentCommunityUser === author ? '' : 'opacity-0'}`}
+              className={`regular-20 cursor-pointer ${
+                currentCommunityUser === author ? "" : "opacity-0"
+              }`}
               onClick={currentCommunityUser === author ? handleMore : null}
             />
-            {isMore && currentCommunityUser === author &&(
+            {isMore && currentCommunityUser === author && (
               <div className="absolute right-0 mt-1 w-28 bg-white border border-gray-100 rounded shadow-lg z-10">
                 <div
                   className="flex items-center p-2 hover:bg-gray-100 cursor-pointer regular-12"
@@ -209,15 +193,28 @@ const PostCard = ({
               </div>
             )}
           </div>
-          
         </div>
 
-        <div className="flex flex-col mt-5">
+        <div className="flex flex-col mt-5 justify-between">
           {/* <p className="regular-12 text-gray-30">5 Likes • 10 Comments</p> */}
           <p className="regular-12 text-gray-30">
             {formattedDate} • {formattedTime}
           </p>
         </div>
+      </div>
+
+      <div className="mt-2">
+        {comments.map((comment) => (
+          <CommentCard
+            key={comment.id}
+            postId={id}
+            commentId={comment.id}
+            comment={comment.content}
+            authorComment={comment.nickname}
+            created_at={comment.created_at}
+          />
+        ))}
+        <CreateCommentForm postId={id} setUpdateComment={setUpdateComment} />
       </div>
     </motion.article>
   );
