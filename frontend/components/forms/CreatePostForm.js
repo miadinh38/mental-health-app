@@ -9,18 +9,19 @@ const CreatePostForm = ({ setUpdatePost }) => {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log("Post Data:", data);
-
     if (typeof window !== "undefined") {
       const token = localStorage.getItem("token");
-      const res = await createNewPost(token, data);
-      console.log("create post: ", res.data);
-      setUpdatePost((prev) => !prev);
-      reset();
+      try {
+        await createNewPost(token, data);
+        setUpdatePost((prev) => !prev);
+        reset();
+        
+      } catch (error) {
+        console.error("Error from creating new post: ", error)
+      }
     }
   };
 
