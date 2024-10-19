@@ -1,11 +1,11 @@
 import db from './db/dbConfig.js'
 
 // Get comment by ID
-export const getPostById = async(commentId, postId) => {
+export const getPostById = async (commentId, postId) => {
   try {
     const query = `SELECT * FROM comments WHERE id = $1 AND post_id = $2;`
-    const result =  await db.query(query, [commentId, postId]);
-    return result.rows; 
+    const result = await db.query(query, [commentId, postId])
+    return result.rows
   } catch (error) {
     console.error('Error from getPostById model: ', error.message)
     throw error
@@ -15,7 +15,10 @@ export const getPostById = async(commentId, postId) => {
 // Get all comments associated with a post
 export const getAllCommentsQuery = async (postId) => {
   try {
-    const query = `SELECT * FROM comments WHERE post_id = $1;`
+    const query = `SELECT c.*, cu.nickname 
+      FROM comments c 
+      JOIN community_users cu ON c.community_user_id = cu.id 
+      WHERE c.post_id = $1;`
     const result = await db.query(query, [postId])
     return result.rows
   } catch (error) {
