@@ -126,7 +126,7 @@ body {
     @apply border border-purple-700 bg-white px-5 py-2 text-purple-700 hover:bg-black hover:text-white;
   }
   .btn_white_text  { 
-    @apply shadow-lg bg-white px-6 py-6 text-purple-900;
+    @apply shadow-lg border-none bg-white px-6 py-6 text-purple-900;
   }
   
   .btn_purple  { 
