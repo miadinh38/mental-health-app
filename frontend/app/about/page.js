@@ -33,10 +33,10 @@ const About = () => {
       <div className="flex justify-center items-center min-h-[50vh] bg-gray-100 space-x-4">
         <div className="text-left lg:w-2/5">
           <h1 className={`${poppins.className} text-4xl font-bold mb-4`}>
-            Teenvent
+            Mindora
           </h1>
           <p className="text-lg text-justify">
-            TeenVent is a mental health and wellness app for teens that delivers
+            Mindora is a mental health and wellness app for teens that delivers
             services and resources meant to improve the quality of life for
             those dealing with mental and emotional health struggles. It is safe
             and inclusive digital platform designed to support teens facing
@@ -46,10 +46,10 @@ const About = () => {
 
         <div>
           <Image
-            src="/images/teenvent1.png"
+            src="/images/Mindora1.png"
             width={500}
             height={500}
-            alt="Teenvent Image"
+            alt="Mindora Image"
             className="w-80 h-auto rounded-full shadow-lg"
           />
         </div>
@@ -59,17 +59,17 @@ const About = () => {
       <div className="bg-gray-100 p-10">
         <h1 className="text-4xl font-bold mb-4 text-center">Our purpose</h1>
         <p className="text-lg text-center">
-          TeenVent provides Gamified Stress Management, Parent/Guardian
+          Mindora provides Gamified Stress Management, Parent/Guardian
           Educational resources, and Mood and Progress Tracking for teens
           dealing with mental and emotional health struggles.
         </p>
       </div>
       <div className="flex justify-center">
         <Image
-          src="/images/teenvent2.jpg"
+          src="/images/Mindora2.jpg"
           width={500}
           height={500}
-          alt="Teenvent Image"
+          alt="Mindora Image"
           className="mx-auto w-96 h-96 object-cover rounded-full shadow-lg"
         />
       </div>

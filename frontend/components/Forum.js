@@ -30,7 +30,7 @@ const Forum = ({ currentCommunityUser }) => {
   return (
     <div>
       <div className="flex flexCenter bold-32 p-5 text-purple-700">
-        TeenVent Forum
+        Mindora Forum
       </div>
 
       <div className="mt-5">

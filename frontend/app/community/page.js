@@ -44,13 +44,13 @@ const Community = () => {
       {!isAuth && (
         <div className="p-4 rounded shadow-md">
           <p className="flexCenter bold-32 p-5 text-purple-700">
-            Join the TeenVent Community
+            Join the Mindora Community
           </p>
           <CommunityInfo />
 
           <ul className="flex gap-3">
-            {["login", "register"].map((button, index) => (
-              <Link key={index} href={`/${button}`}>
+            {["login", "sign up"].map((button, index) => (
+              <Link key={index} href={`/${button === "sign up" ? "signup" : "login"}`}>
                 <Button
                   type="button"
                   title={button}
@@ -65,7 +65,7 @@ const Community = () => {
       {isAuth && !hasJoined && (
         <div className="p-4 rounded shadow-md">
           <p className="flexCenter bold-32 p-5 text-purple-700">
-            Join the TeenVent Community
+            Join the Mindora Community
           </p>
 
           {!next ? (

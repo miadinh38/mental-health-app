@@ -8,8 +8,8 @@ export const sendEmail = async (to, subject, html) => {
   const msg = {
     to: to,
     from: {
-      name: 'TeenVent',
-      email: 'helpteenstoday@gmail.com',
+      name: 'Mindora',
+      email: 'mindora.care@gmail.com',
     },
     subject: subject,
     html: html,

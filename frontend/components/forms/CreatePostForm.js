@@ -41,7 +41,7 @@ const CreatePostForm = ({ setUpdatePost }) => {
 
       <div className="flex flex-col mb-5 gap-3">
         <p className="regular-12 text-gray-30">
-          <strong>Visibility:</strong> Your post will be visible to all TeenVent
+          <strong>Visibility:</strong> Your post will be visible to all Mindora
           Community users. Please ensure that all posts comply with community
           guidelines; otherwise, they may be removed by admins.{" "}
         </p>
