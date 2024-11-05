@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import AuthContextProvider from "../context/AuthContext";
 
 export const metadata = {
-  title: "TeenVent",
+  title: "Mindora",
   description: "A Mental Health App for Teens",
 };
 

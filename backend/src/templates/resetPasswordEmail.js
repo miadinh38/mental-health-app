@@ -125,14 +125,15 @@ const resetPasswordTemplate = (resetLink, name) => `
       box-sizing: border-box;
     }
     
-    .button--green {
-      background-color: #22BC66;
-      border-top: 10px solid #22BC66;
-      border-right: 18px solid #22BC66;
-      border-bottom: 10px solid #22BC66;
-      border-left: 18px solid #22BC66;
+    .button--purple {
+      background-color: #6B6BDA;
+      border-top: 10px solid #6B6BDA;
+      border-right: 18px solid #6B6BDA;
+      border-bottom: 10px solid #6B6BDA;
+      border-left: 18px solid #6B6BDA;
       color: #FFF;
     }
+    
     
     .button--red {
       background-color: #FF6136;
@@ -450,7 +451,7 @@ const resetPasswordTemplate = (resetLink, name) => `
           <table class="email-content" width="100%" cellpadding="0" cellspacing="0" role="presentation">
             <tr>
               <td class="email-masthead">
-                <p>TeenVent</p>
+                <p>Mindora</p>
               </td>
             </tr>
             <!-- Email Body -->
@@ -462,7 +463,7 @@ const resetPasswordTemplate = (resetLink, name) => `
                     <td class="content-cell">
                       <div class="f-fallback">
                         <h1>Hi ${name},</h1>
-                        <p>You recently requested to reset your password for your TeenVent account. Use the button below to reset it. <strong>This password reset is only valid for the next 1 hour.</strong></p>
+                        <p>You recently requested to reset your password for your Mindora account. Use the button below to reset it. <strong>This password reset is only valid for the next 1 hour.</strong></p>
                         <!-- Action -->
                         <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0" role="presentation">
                           <tr>
@@ -472,16 +473,16 @@ const resetPasswordTemplate = (resetLink, name) => `
                               <table width="100%" border="0" cellspacing="0" cellpadding="0" role="presentation">
                                 <tr>
                                   <td align="center">
-                                    <a href="${resetLink}" class="f-fallback button button--green text--color" target="_blank">Reset your password</a>
+                                    <a href="${resetLink}" class="f-fallback button button--purple text--color" target="_blank">Reset your password</a>
                                   </td>
                                 </tr>
                               </table>
                             </td>
                           </tr>
                         </table>
-                        <p>If you did not request a password reset, please ignore this email or <a href="mailto:helpteenstoday@gmail.com">contact support</a> if you have questions.</p>
+                        <p>If you did not request a password reset, please ignore this email or <a href="mailto:mindora.care@gmail.com">contact support</a> if you have questions.</p>
                         <p>Thanks,
-                          <br>The TeenVent Team</p>
+                          <br>The Mindora Team</p>
                         <!-- Sub copy -->
                         <table class="body-sub" role="presentation">
                           <tr>
@@ -503,10 +504,10 @@ const resetPasswordTemplate = (resetLink, name) => `
                   <tr>
                     <td class="content-cell" align="center">
                       <p class="f-fallback sub align-center">
-                        © 2024 TeenVent. All rights reserved.
+                        © 2024 Mindora. All rights reserved.
                       </p>
                       <p class="f-fallback sub align-center">
-                        [TeenVent, LLC]
+                        [Mindora, LLC]
                         <br>1234 Street Rd.
                         <br>Suite 1234
                       </p>

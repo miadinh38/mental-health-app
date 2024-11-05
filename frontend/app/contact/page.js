@@ -6,12 +6,15 @@ const Contact = () => {
       <div className="text-left lg:w-2/5">
         <h1 className="text-4xl font-bold mb-4">Get in touch with us</h1>
         <h5 className="italic mb-4">
-        &ldquo;Anything human is mentionable, and anything that is mentionable can be more manageable. When we can talk about our feelings, they become less overwhelming, less upsetting, and less scary.&rdquo; &mdash; Fred Rogers.
+          &ldquo;Anything human is mentionable, and anything that is mentionable
+          can be more manageable. When we can talk about our feelings, they
+          become less overwhelming, less upsetting, and less scary.&rdquo;
+          &mdash; Fred Rogers.
         </h5>
         <div className="text-center">
-          <p className="text-lg font-medium">Teenvent 990 Villa Street</p>
+          <p className="text-lg font-medium">Mindora 990 Villa Street</p>
           <p className="text-lg">Mountain View, CA 94041</p>
-          <p className="text-lg text-blue-500">helpteenstoday@gmail.com</p>
+          <p className="text-lg text-blue-500">mindora.care@gmail.com</p>
         </div>
       </div>
 

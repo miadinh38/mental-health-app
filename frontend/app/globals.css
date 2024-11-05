@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+
 
 @tailwind base;
 @tailwind components;
@@ -11,7 +12,7 @@
 }
 
 body {
-  font-family: Inter;
+  font-family: 'Montserrat';
 }
 
 @layer utilities {
@@ -112,24 +113,33 @@ body {
     @apply text-[16px] font-[700];
   }
 
-  /* The button color is subject to change */
-  .btn_white { 
-    @apply border-white bg-white px-8 py-3 text-green-600 hover:drop-shadow-xl;
-  }
-  .btn_white_text  { 
-    @apply border-white bg-white px-8 py-3 text-gray-90;
-  }
-  .btn_green  { 
-    @apply bg-green-800 px-5 py-3 text-white hover:bg-black;
-  }
-  .btn_dark_green { 
-    @apply bg-green-900 px-6 py-2 text-white transition-all hover:bg-black;
-  }
-  .btn_dark_green_outline  { 
-    @apply border-gray-20 bg-green-90 px-8 py-5 text-white;
+  .semibold-16 {
+    @apply text-[16px] font-[550];
   }
 
+  .semibold-32 {
+    @apply text-[40px] font-[550] leading-[120%];
+  }
+
+  /* The button color is subject to change */
+  .btn_white { 
+    @apply border border-purple-700 bg-white px-5 py-2 text-purple-700 hover:bg-black hover:text-white;
+  }
+  .btn_white_text  { 
+    @apply shadow-lg bg-white px-6 py-6 text-purple-900;
+  }
+  
+  .btn_purple  { 
+    @apply bg-purple-700 px-5 py-2 text-white hover:bg-black;
+  }
+  /* .btn_dark_green { 
+    @apply bg-purple-700 px-6 py-2 text-white transition-all hover:bg-black;
+  } */
+  /* .btn_dark_green_outline  { 
+    @apply border-gray-20 bg-green-90 px-8 py-5 text-white;
+  } */
+
   .post-card_bar {
-    @apply relative mt-2 w-0.5 grow rounded-full bg-green-800 opacity-10;
+    @apply relative mt-2 w-0.5 grow rounded-full bg-purple-700 opacity-10;
   }
 }

@@ -2,14 +2,10 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { createNewPost } from "../../app/services/postsService";
 import Link from "next/link";
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 const CreatePostForm = ({ setUpdatePost }) => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-  } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = async (data) => {
     if (typeof window !== "undefined") {
@@ -18,9 +14,8 @@ const CreatePostForm = ({ setUpdatePost }) => {
         await createNewPost(token, data);
         setUpdatePost((prev) => !prev);
         reset();
-        
       } catch (error) {
-        console.error("Error from creating new post: ", error)
+        console.error("Error from creating new post: ", error);
       }
     }
   };
@@ -46,7 +41,7 @@ const CreatePostForm = ({ setUpdatePost }) => {
 
       <div className="flex flex-col mb-5 gap-3">
         <p className="regular-12 text-gray-30">
-          <strong>Visibility:</strong> Your post will be visible to all TeenVent
+          <strong>Visibility:</strong> Your post will be visible to all Mindora
           Community users. Please ensure that all posts comply with community
           guidelines; otherwise, they may be removed by admins.{" "}
         </p>
@@ -66,7 +61,7 @@ const CreatePostForm = ({ setUpdatePost }) => {
         </p>
       </div>
 
-      <button type="submit" className="btn_green rounded-md">
+      <button type="submit" className="btn_purple rounded-md">
         Share
       </button>
     </motion.form>

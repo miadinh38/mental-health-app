@@ -4,9 +4,9 @@ const CommunityInfo = () => {
   return (
     <div>
       <div className="my-10">
-        <p className="bold-20 mb-3">What is TeenVent Community?</p>
+        <p className="bold-20 mb-3">What is Mindora Community?</p>
         <p>
-          At TeenVent, we understand that being a teenager can be both exciting
+          At Mindora, we understand that being a teenager can be both exciting
           and challenging. It is a time filled with new experiences, emotions,
           and questions about life. Here, we provide a safe and supportive space
           where you can express your feelings, share your thoughts, and connect

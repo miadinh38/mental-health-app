@@ -13,7 +13,7 @@ const Community = () => {
   const { isAuth } = useAuth();
   const [next, setNext] = useState(false);
   const [hasJoined, setHasJoined] = useState(false);
-  const [currentCommunityUser, setCurrentCommunityUser] = useState("")
+  const [currentCommunityUser, setCurrentCommunityUser] = useState("");
 
   const handleNextButton = () => {
     setNext(true);
@@ -29,7 +29,7 @@ const Community = () => {
           const token = localStorage.getItem("token");
           const response = await checkUserHasJoined(token);
           setHasJoined(response.data.has_joined);
-          setCurrentCommunityUser(response.data.communityUser[0].nickname)
+          setCurrentCommunityUser(response.data.communityUser[0].nickname);
         }
       } catch (err) {
         console.error("Error checking user status:", err);
@@ -43,18 +43,18 @@ const Community = () => {
     <div className="padding-container max-container">
       {!isAuth && (
         <div className="p-4 rounded shadow-md">
-          <p className="flexCenter bold-32 p-5 text-green-800">
-            Join the TeenVent Community
+          <p className="flexCenter bold-32 p-5 text-purple-700">
+            Join the Mindora Community
           </p>
           <CommunityInfo />
 
           <ul className="flex gap-3">
-            {["login", "register"].map((button, index) => (
-              <Link key={index} href={`/${button}`}>
+            {["login", "sign up"].map((button, index) => (
+              <Link key={index} href={`/${button === "sign up" ? "signup" : "login"}`}>
                 <Button
                   type="button"
                   title={button}
-                  variant="btn_green capitalize"
+                  variant="btn_purple capitalize"
                 />
               </Link>
             ))}
@@ -64,8 +64,8 @@ const Community = () => {
 
       {isAuth && !hasJoined && (
         <div className="p-4 rounded shadow-md">
-          <p className="flexCenter bold-32 p-5 text-green-800">
-            Join the TeenVent Community
+          <p className="flexCenter bold-32 p-5 text-purple-700">
+            Join the Mindora Community
           </p>
 
           {!next ? (
@@ -74,7 +74,7 @@ const Community = () => {
 
               <button
                 type="button"
-                className="btn_green rounded-xl"
+                className="btn_purple rounded-xl"
                 onClick={handleNextButton}
               >
                 Next
@@ -90,7 +90,9 @@ const Community = () => {
         </div>
       )}
 
-      {isAuth && hasJoined && <Forum currentCommunityUser={currentCommunityUser} />}
+      {isAuth && hasJoined && (
+        <Forum currentCommunityUser={currentCommunityUser} />
+      )}
     </div>
   );
 };

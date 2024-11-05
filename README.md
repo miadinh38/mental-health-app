@@ -1,8 +1,9 @@
-# TeenVent
-TeenVent is a mental health app designed for teens, offering personalized recommendations and evidence-based tools to help manage mental well-being. This is a safe space where teens can share their thoughts and feelings openly while receiving support from their peers. This supportive environment encourages honest conversations, helping users feel understood and connected as they navigate their mental health journeys together.
+# Mindora
 
+Mindora is a mental health app designed for teens, offering personalized recommendations and evidence-based tools to help manage mental well-being. This is a safe space where teens can share their thoughts and feelings openly while receiving support from their peers. This supportive environment encourages honest conversations, helping users feel understood and connected as they navigate their mental health journeys together.
 
 # MVP Features:
+
 ✅ **User Authentication:**
 Secure authentication using JSON Web Tokens (JWT). Users can reset passwords via email confirmation using the SendGrid API.
 
@@ -28,40 +29,45 @@ An admin dashboard for managing user accounts, moderating content, and viewing a
 
 This project is built using the following technologies:
 
-- **Backend**: 
+- **Backend**:
+
   - Node.js
   - Express.js
 
-- **Frontend**: 
+- **Frontend**:
+
   - Next.js
   - Tailwind CSS
 
-- **Database**: 
+- **Database**:
+
   - PostgreSQL
 
-- **Deployment**: 
-  
+- **Deployment**:
+
   Vercel (for automatic deployment of both frontend and backend)
-    - **Frontend**: [teenvent.vercel.app](https://teenvent.vercel.app/)
-    - **Backend**: [teenvent-server.vercel.app](https://teenvent-server.vercel.app/)
+
+  - **Frontend**: [Mindora.vercel.app](https://Mindora.vercel.app/)
+  - **Backend**: [Mindora-server.vercel.app](https://Mindora-server.vercel.app/)
 
 # Setup
+
 ## Backend
 
 ### Quick Run
 
-Navigate to the backend directory and install dependencies with: 
+Navigate to the backend directory and install dependencies with:
 
-```bash 
+```bash
 cd backend
 npm install
 ```
 
 ### Create database
 
-Use the `psql -U root -h localhost -p 5432 -d teenvent` command to login to the PostgreSQL server with the username `root` and the password `secret`. This command **MUST** be run in a vagrant terminal, we are using the PostgreSQL installation provided in the vagrant environment. M1/M2 and WSL2 users can execute this command in their terminal.
+Use the `psql -U root -h localhost -p 5432 -d Mindora` command to login to the PostgreSQL server with the username `root` and the password `secret`. This command **MUST** be run in a vagrant terminal, we are using the PostgreSQL installation provided in the vagrant environment. M1/M2 and WSL2 users can execute this command in their terminal.
 
-Create a database with the command `CREATE DATABASE teenvent;`.
+Create a database with the command `CREATE DATABASE Mindora;`.
 
 Create a new `.env` file and copy the `.env.example` file to `.env` and fill in the necessary PostgreSQL configuration. The `node-postgres` library uses these environment variables by default.
 
@@ -69,11 +75,12 @@ Create a new `.env` file and copy the `.env.example` file to `.env` and fill in 
 DB_HOST=localhost
 DB_USER=root
 DB_PASS=secret
-DB_NAME=teenvent
+DB_NAME=Mindora
 DB_PORT=5432
 ```
 
 ### Start the development server
+
 ```bash
 npm run dev
 ```
@@ -88,12 +95,11 @@ npm run db:reset
 
 Use the browser to navigate to http://localhost:8080.
 
-
 ## Frontend - Next JS
+
 ```bash
 cd frontend
 npm run dev
 ```
 
 Use the browser to navigate to http://localhost:3000.
-

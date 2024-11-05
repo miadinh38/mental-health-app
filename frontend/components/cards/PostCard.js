@@ -1,18 +1,17 @@
 import Image from "next/image";
-import React, { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { FaRegComment, FaRegHeart, FaHeart } from "react-icons/fa";
 import { PiShareFat } from "react-icons/pi";
-import { CiEdit, CiTrash } from "react-icons/ci";
-import { MdMoreHoriz } from "react-icons/md";
 import { deletePost, updatePost } from "../../app/services/postsService";
 import CreateCommentForm from "../forms/CreateCommentForm";
 import CommentCard from "./CommentCard";
 import { fetchComments } from "../../app/services/commentsService";
 import { formatDate } from "../../app/utils/formatDate";
+import MoreOptionsDropdown from "../MoreOptionsDropdown";
+import ConfirmationModal from "../ConfirmationModal";
 
 const PostCard = ({
-  key,
   id,
   content,
   created_at,
@@ -20,14 +19,15 @@ const PostCard = ({
   setUpdatePost,
   author,
 }) => {
-  const { formattedDate, formattedTime, timeAgo } = formatDate(created_at)
+  const { formattedDate, formattedTime, timeAgo } = formatDate(created_at);
   const [isLiked, setIsLiked] = useState(false);
-  const [isComment, setIsComment] = useState(false);
   const [isMore, setIsMore] = useState(false);
   const [isEditing, setIsEditing] = useState(null);
   const [editContent, setEditContent] = useState("");
   const [comments, setComments] = useState([]);
   const [updateComment, setUpdateComment] = useState(false);
+  const [isCommentCliked, setIsCommentClicked] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const dropdownRef = useRef(null);
 
@@ -59,7 +59,6 @@ const PostCard = ({
   };
 
   const handleSaveChanges = async () => {
-    console.log("saved");
     if (typeof window !== "undefined") {
       const token = localStorage.getItem("token");
       try {
@@ -73,12 +72,21 @@ const PostCard = ({
   };
 
   const handleDeletePost = async () => {
+    setIsModalOpen(true);
+    setIsMore(false);
+  };
+
+  const onCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const onConfirmModal = async () => {
     if (typeof window !== "undefined") {
       const token = localStorage.getItem("token");
       try {
         await deletePost(token, id);
-        setIsMore(false);
         setUpdatePost((prev) => !prev);
+        setIsModalOpen(false);
       } catch (error) {
         console.error("Error deleting post:", error);
       }
@@ -102,7 +110,7 @@ const PostCard = ({
     };
 
     fetchAllComments();
-  }, [updateComment]);
+  }, [updateComment, id]);
 
   return (
     <motion.article
@@ -128,7 +136,7 @@ const PostCard = ({
 
           <div className="flex w-full flex-col">
             <div className="flex flexStart">
-              <p className="font-semibold text-green-800 capitalize">
+              <p className="font-semibold text-purple-700 capitalize">
                 {author}
               </p>
               <span className="regular-12 text-gray-30 ml-2">• {timeAgo}</span>
@@ -145,7 +153,7 @@ const PostCard = ({
                 />
                 <button
                   onClick={handleSaveChanges}
-                  className="btn_green w-20 rounded-xl mt-3"
+                  className="btn_purple w-20 rounded-xl mt-3"
                 >
                   Save
                 </button>
@@ -163,35 +171,24 @@ const PostCard = ({
                     <FaRegHeart className="regular-18" />
                   )}
                 </div>
-                <FaRegComment className="regular-18 cursor-pointer" />
+                <FaRegComment
+                  className="regular-18 cursor-pointer"
+                  onClick={() => setIsCommentClicked((prev) => !prev)}
+                />
                 <PiShareFat className="regular-20 cursor-pointer" />
               </div>
             </div>
           </div>
 
           <div className="relative" ref={dropdownRef}>
-            <MdMoreHoriz
-              className={`regular-20 cursor-pointer ${
-                currentCommunityUser === author ? "" : "opacity-0"
-              }`}
-              onClick={currentCommunityUser === author ? handleMore : null}
+            <MoreOptionsDropdown
+              currentCommunityUser={currentCommunityUser}
+              author={author}
+              isMore={isMore}
+              handleMore={handleMore}
+              handleEdit={handleEditPost}
+              handleDelete={handleDeletePost}
             />
-            {isMore && currentCommunityUser === author && (
-              <div className="absolute right-0 mt-1 w-28 bg-white border border-gray-100 rounded shadow-lg z-10">
-                <div
-                  className="flex items-center p-2 hover:bg-gray-100 cursor-pointer regular-12"
-                  onClick={handleEditPost}
-                >
-                  <CiEdit className="mr-2" /> Edit Post
-                </div>
-                <div
-                  className="flex items-center p-2 hover:bg-gray-100 cursor-pointer regular-12"
-                  onClick={handleDeletePost}
-                >
-                  <CiTrash className="mr-2" /> Delete Post
-                </div>
-              </div>
-            )}
           </div>
         </div>
 
@@ -203,19 +200,30 @@ const PostCard = ({
         </div>
       </div>
 
-      <div className="mt-2">
-        {comments.map((comment) => (
-          <CommentCard
-            key={comment.id}
-            postId={id}
-            commentId={comment.id}
-            comment={comment.content}
-            authorComment={comment.nickname}
-            created_at={comment.created_at}
-          />
-        ))}
-        <CreateCommentForm postId={id} setUpdateComment={setUpdateComment} />
-      </div>
+      {isCommentCliked && (
+        <div className="mt-2">
+          {comments.map((comment) => (
+            <CommentCard
+              key={comment.id}
+              postId={id}
+              commentId={comment.id}
+              comment={comment.content}
+              authorComment={comment.nickname}
+              created_at={comment.created_at}
+              dropdownRef={dropdownRef}
+              currentCommunityUser={currentCommunityUser}
+              setUpdateComment={setUpdateComment}
+            />
+          ))}
+          <CreateCommentForm postId={id} setUpdateComment={setUpdateComment} />
+        </div>
+      )}
+
+      <ConfirmationModal
+        isModalOpen={isModalOpen}
+        onCloseModal={onCloseModal}
+        onConfirmModal={onConfirmModal}
+      />
     </motion.article>
   );
 };

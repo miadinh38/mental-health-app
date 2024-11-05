@@ -21,7 +21,7 @@ const Forum = ({ currentCommunityUser }) => {
           setPosts(result.data);
         }
       } catch (error) {
-        console.error("Error from fetching posts: ", error)
+        console.error("Error from fetching posts: ", error);
       }
     };
 
@@ -29,14 +29,14 @@ const Forum = ({ currentCommunityUser }) => {
   }, [updatePost]);
   return (
     <div>
-      <div className="flex flexCenter bold-32 p-5 text-green-800">
-        TeenVent Forum
+      <div className="flex flexCenter bold-32 p-5 text-purple-700">
+        Mindora Forum
       </div>
 
       <div className="mt-5">
         <button
           type="button"
-          className="btn_green rounded-3xl mb-5"
+          className="btn_purple rounded-3xl mb-5"
           onClick={() => setIsCreateClicked((prev) => !prev)}
         >
           <span className="flex flexCenter gap-3">

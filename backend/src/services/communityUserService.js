@@ -29,7 +29,7 @@ export const createNewCommunityUser = async (userId, nickname) => {
     const result = await updateAgreementSigned(userId)
     return {
       errCode: 0,
-      errMessage: 'Nickname created. Welcome to TeenVent Community!',
+      errMessage: 'Nickname created. Welcome to Mindora Community!',
       result,
     }
   } catch (error) {
@@ -44,7 +44,7 @@ export const checkCommunityUserExistService = async (userId) => {
     if (communityUser.length > 0) {
       return {
         has_joined: true,
-        communityUser
+        communityUser,
       }
     } else {
       return false
