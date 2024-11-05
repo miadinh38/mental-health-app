@@ -132,19 +132,19 @@ export default function Header() {
               <Button
                 type="button"
                 title="Depression"
-                variant="absolute btn_white_text transform -translate-x-[60px] -translate-y-[225px] z-20 rotate-[-5deg]"
+                variant="absolute btn_white_text transform -translate-x-[60px] -translate-y-[222px] z-20 rotate-[-5deg]"
               />
 
               <Button
                 type="button"
                 title="Bipolar Disorder"
-                variant="absolute btn_white_text transform -translate-x-[-20px] -translate-y-[245px] z-30 rotate-[20.75deg]"
+                variant="absolute btn_white_text transform -translate-x-[-20px] -translate-y-[242px] z-30 rotate-[20deg]"
               />
 
               <Button
                 type="button"
                 title="Low Self-esteem"
-                variant="absolute btn_white_text transform -translate-x-[80px] -translate-y-[310px] z-20 rotate-[-4deg]"
+                variant="absolute btn_white_text transform -translate-x-[80px] -translate-y-[308px] z-20 rotate-[-5deg]"
               />
 
               <Button
