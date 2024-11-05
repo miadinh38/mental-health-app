@@ -120,7 +120,7 @@ export default function Header() {
               <Button
                 type="button"
                 title="Peer Pressure"
-                variant="absolute btn_white_text transform -translate-x-[190px] -translate-y-[218px]"
+                variant="absolute btn_white_text transform -translate-x-[205px] -translate-y-[218px]"
               />
 
               <Button
