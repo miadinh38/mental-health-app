@@ -28,7 +28,7 @@ const CreateCommentForm = ({ postId, setUpdateComment }) => {
       className="flex flex-1 gap-4 mt-4"
     >
       <textarea
-        className="border border-gray-10 rounded-3xl p-1 focus:outline-none w-full regular-14"
+        className="border border-gray-10 rounded-3xl p-2 px-6 focus:outline-none w-full regular-14"
         placeholder="  Type your comment..."
         {...register("content", {
           required: true,

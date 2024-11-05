@@ -50,7 +50,7 @@ const Forum = ({ currentCommunityUser }) => {
         </button>
         {isCreateClicked && <CreatePostForm setUpdatePost={setUpdatePost} />}
       </div>
-
+      
       <p className="bold-18 mt-10">Latest Posts</p>
       <section className="mt-5 flex flex-col gap-10">
         {posts.length === 0 ? (
