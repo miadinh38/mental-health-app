@@ -21,9 +21,10 @@ export const removeArticles = async () => {
 
     // Reset the sequence after deletions
     // await db.query('ALTER SEQUENCE articles_id_seq RESTART WITH 1;');
-    countResult = await db.query('SELECT COUNT(*) FROM articles;');
-    articleCount = parseInt(countResult.rows[0].count, 10);
-    console.log(`Current article count after deletion: ${articleCount}`);
+
+    // countResult = await db.query('SELECT COUNT(*) FROM articles;');
+    // articleCount = parseInt(countResult.rows[0].count, 10);
+    // console.log(`Current article count after deletion: ${articleCount}`);
 
   } catch (error) {
     console.error('Error removing article:', error)
