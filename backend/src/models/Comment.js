@@ -18,7 +18,8 @@ export const getAllCommentsQuery = async (postId) => {
     const query = `SELECT c.*, cu.nickname 
       FROM comments c 
       JOIN community_users cu ON c.community_user_id = cu.id 
-      WHERE c.post_id = $1;`
+      WHERE c.post_id = $1
+      ORDER BY c.created_at ASC;`
     const result = await db.query(query, [postId])
     return result.rows
   } catch (error) {
