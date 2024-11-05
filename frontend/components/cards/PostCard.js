@@ -110,7 +110,7 @@ const PostCard = ({
     };
 
     fetchAllComments();
-  }, [updateComment]);
+  }, [updateComment, id]);
 
   return (
     <motion.article

@@ -72,9 +72,9 @@ export default function Header() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.5 }}
             >
-              Ever feel like you're carrying the weight of the world on your
-              shoulders? At Mindora, we're here to lighten the load with a
-              supportive community and resources to help you face life's
+              Ever feel like you&apos;re carrying the weight of the world on your
+              shoulders? At Mindora, we&apos;re here to lighten the load with a
+              supportive community and resources to help you face life&apos;s
               challenges with confidence.
             </motion.p>
 
