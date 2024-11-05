@@ -8,7 +8,7 @@ const Navbar = () => {
   const { logout, isAuth, currentUser } = useAuth();
 
   return (
-    <nav className="flex justify-between items-center py-4 px-24 bg-purple-50">
+    <nav className="flex justify-between items-center py-4 px-24 bg-purple-50 z-20 relative">
       <Link href="/">
         <Image
           src="/Mindora-logo.png"
