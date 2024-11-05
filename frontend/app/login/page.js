@@ -155,10 +155,10 @@ const Login = () => {
               </label>
             </div>
 
-            <Link href="/forgot-password" className="flexEnd regular-14 text-green-800 hover:underline">Forgot password?</Link>
+            <Link href="/forgot-password" className="flexEnd regular-14 text-purple-700 hover:underline">Forgot password?</Link>
 
             <button
-              className="w-full bg-green-800 hover:bg-black focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  focus:ring-blue-800 text-white"
+              className="w-full bg-purple-700 hover:bg-black focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  focus:ring-blue-800 text-white"
               type="submit"
             >
               Login
@@ -168,7 +168,7 @@ const Login = () => {
               Don&apos;t have an account yet?
               <Link
                 href="/register"
-                className="pl-2 text-green-800 hover:underline"
+                className="pl-2 text-purple-700 hover:underline"
               >
                 Register here
               </Link>

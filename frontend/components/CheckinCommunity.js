@@ -24,10 +24,10 @@ const CheckinCommunity = ({ onPrevious, next, setHasJoined }) => {
         const token = localStorage.getItem("token");
         const response = await createCommunityUser({ token, nickname });
         if (response.data.errCode === 0) {
-          toast.success(response.data.errMessage)
-          setHasJoined(true)
+          toast.success(response.data.errMessage);
+          setHasJoined(true);
         } else {
-          toast.error(response.data.errMessage)
+          toast.error(response.data.errMessage);
         }
       } catch (error) {
         console.error("Error creating community user:", error);
@@ -49,7 +49,7 @@ const CheckinCommunity = ({ onPrevious, next, setHasJoined }) => {
           <div className="flex gap-4 mt-5">
             <button
               type="button"
-              className="btn_green rounded-xl"
+              className="btn_purple rounded-xl"
               onClick={onPrevious}
             >
               Go Back
@@ -58,7 +58,7 @@ const CheckinCommunity = ({ onPrevious, next, setHasJoined }) => {
               type="submit"
               className={`px-5 py-3 text-white rounded-xl ${
                 isChecked && nickname
-                  ? "btn_green"
+                  ? "btn_purple"
                   : "bg-gray-400 cursor-not-allowed"
               }`}
               disabled={!isChecked || !nickname}
