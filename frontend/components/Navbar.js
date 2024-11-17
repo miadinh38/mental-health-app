@@ -11,10 +11,10 @@ const Navbar = () => {
     <nav className="flex justify-between items-center py-4 px-24 bg-purple-50 z-20 relative">
       <Link href="/">
         <Image
-          src="/Mindora-logo.png"
+          src="/logo.png"
           alt="Mindora logo"
-          width={150}
-          height={32}
+          width={104}
+          height={28}
           priority
           className="max-w-full"
         />
