@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function Header() {
   return (
-    <div className="relative">
+    <section className="relative">
       {/* Middle Layer (2/3 width with linear background) */}
       <div className="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-r from-white to-purple-300">
         <Image
@@ -164,6 +164,6 @@ export default function Header() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
