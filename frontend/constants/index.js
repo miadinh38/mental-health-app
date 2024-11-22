@@ -20,3 +20,21 @@ export const WHYJOINUS = [
     description: "Learn from others’ experiences and gain new perspectives, contributing to your personal development."
   }
 ];
+
+export const VALUES = [
+  {
+    icon: "/icon.png",
+    title: "Peace of Mind",
+    description: "Create a supportive environment where calmness and clarity guide every conversation."
+  },
+  {
+    icon: "/icon.png",
+    title: "Empathy First",
+    description: "Embrace kindness and understanding, treating every individual with compassion and care."
+  },
+  {
+    icon: "/icon.png",
+    title: "Authentic Conversations",
+    description: "Speak from the heart, encouraging real, open dialogue without fear of judgment."
+  }
+]

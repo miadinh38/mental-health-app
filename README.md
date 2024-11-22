@@ -13,7 +13,7 @@ Fetch and display articles using News API, with pagination for easy navigation.
 ✅ **Search Function:**
 A robust search that allows users to find articles while filtering out sensitive and negative words suitable for teenagers.
 
-🔄 **Forum / Anonymity (In Progress):**
+✅ **Forum / Anonymity:**
 Users can anonymously share their feelings and seek advice in a supportive forum environment.
 
 🔜 **Chatbot:**
@@ -21,9 +21,6 @@ Interact with both an admin and an AI-powered chatbot for immediate assistance.
 
 🔜 **Mood Tracking:**
 Users can select and archive their daily mood in a calendar for emotional monitoring.
-
-🔜 **Admin Dashboard:**
-An admin dashboard for managing user accounts, moderating content, and viewing analytics to enhance user experience and ensure community safety.
 
 # Teck stack:
 
