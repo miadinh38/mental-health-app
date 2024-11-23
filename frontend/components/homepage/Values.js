@@ -22,7 +22,7 @@ export default function Values() {
           Our values
         </p>
 
-        <ul className="z-20 flex m-6">
+        <ul className="z-20 flex m-6 pb-10">
           {VALUES.map((value, index) => (
             <li
               key={index}
@@ -44,14 +44,14 @@ export default function Values() {
           ))}
         </ul>
 
-        <div className="flex flexCenter pb-7">
+        {/* <div className="flex flexCenter pb-7">
           <Button
             type="button"
             title="Vent Now"
             variant="btn_purple w-[169px]"
             size="big"
           />
-        </div>
+        </div> */}
       </div>
 
     </section>

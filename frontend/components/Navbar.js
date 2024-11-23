@@ -20,8 +20,8 @@ const Navbar = () => {
         />
       </Link>
 
-      <ul className="flex flex-1 justify-start h-full gap-8 flexCenter md:hidden">
-        {["articles", "FAQ", "about", "contact", "community"].map(
+      <ul className="flex flex-1 justify-start h-full gap-10 flexCenter md:hidden">
+        {["articles", "FAQ", "contact", "community"].map(
           (label, index) => (
             <Link
               key={index}
