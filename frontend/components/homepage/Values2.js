@@ -16,7 +16,7 @@ export default function Values2() {
             Uplifting each other is at the heart of our mission
           </p>
           <p className="regular-18 flex mx-auto text-center w-2/3">
-            Whether you're venting, giving advice, or just listening, we&apos;ve got
+            Whether you&apos;re venting, giving advice, or just listening, we&apos;ve got
             each other&apos;s backs. Positive vibes only!
           </p>
         </div>
