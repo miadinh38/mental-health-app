@@ -5,7 +5,7 @@ import { VALUES } from "../../constants";
 
 export default function Values() {
   return (
-    <section className="relative pt-7">
+    <section className="relative">
       <Image
         src="/vector4.png"
         width={225}
@@ -17,6 +17,7 @@ export default function Values() {
       <div className="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-r from-white to-purple-300" />
 
       <div className="relative z-10 max-container padding-container">
+        <div className="border border-purple-100 w-1/3 flex flexCenter mx-auto mb-10"/>
         <p className="flex flexCenter semibold-32 text-purple-700">
           Our values
         </p>
@@ -52,6 +53,7 @@ export default function Values() {
           />
         </div>
       </div>
+
     </section>
   );
 }
