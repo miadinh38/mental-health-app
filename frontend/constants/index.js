@@ -38,3 +38,21 @@ export const VALUES = [
     description: "Speak from the heart, encouraging real, open dialogue without fear of judgment."
   }
 ]
+
+export const VALUES2 = [
+  {
+    img: "/img2.png",
+    title: "Peer Support",
+    description: "Feeling overwhelmed, stressed, or bullied? You don't have to face it alone. Reach out for support and regain control with the guidance you need."
+  },
+  {
+    img: "/img3.png",
+    title: "Mental Wellness",
+    description: "Take control of your mental health with resources that help you manage stress, build resilience, improve emotional well-being, and feel your best every day."
+  },
+  {
+    img: "/img4.png",
+    title: "Safe Space",
+    description: "A safe, judgment-free space to express yourself and share your experiences openly. Together, we foster growth, healing, and mutual support."
+  }
+]
