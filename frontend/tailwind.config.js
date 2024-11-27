@@ -20,13 +20,6 @@ module.exports = {
           800: "#4F4F98",
           900: "#1E1E47",
         },
-        // gray: {
-        //   100: "#EEEEEE",
-        //   200: "#CACCCC",
-        //   300: "#A1A5A4",
-        //   500: "#585E5B",
-        //   900: "#141414",
-        // },
         gray: {
           200: "#CACCCC",
           300: "#A1A5A4",
@@ -36,11 +29,7 @@ module.exports = {
       },
       backgroundImage: {
         "bg-img-1": "url('/bg-values.png')",
-        
-        // "bg-img-2": "url('/img-2.png')",
-        // "feature-bg": "url('/feature-bg.png')",
-        // pattern: "url('/pattern.png')",
-        // "pattern-2": "url('/pattern-bg.png')",
+        "bg-img-2": "url('/bg-image-2.jpeg')",
       },
       screens: {
         xs: { max: "480px" },

@@ -118,10 +118,14 @@ body {
   }
 
   .semibold-20 {
-    @apply text-[32px] font-[550];
+    @apply text-[20px] font-[550];
   }
 
   .semibold-32 {
+    @apply text-[32px] font-[550];
+  }
+
+  .semibold-40 {
     @apply text-[40px] font-[550] leading-[120%];
   }
 
