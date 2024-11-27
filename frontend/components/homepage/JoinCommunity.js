@@ -17,16 +17,16 @@ export default function JoinCommunity() {
             We get it—and we&apos;ve got you!
           </p>
 
-          <div className="flex flexStart mt-32 relative z-20">
-            <Link href="/community">
+          <Link href="/community">
+            <div className="flex flexStart mt-32 relative z-20">
               <Button
                 type="button"
                 title="Join Our Community"
                 variant="btn_purple w-[373px]"
                 size="big"
               />
-            </Link>
-          </div>
+            </div>
+          </Link>
 
           <Image
             src="/vector5.png"
@@ -54,13 +54,13 @@ export default function JoinCommunity() {
             className="absolute bottom-[-50px] left-[120px]"
           />
 
-          <Image
+          {/* <Image
             src="/vector5.png"
             alt="vector"
             width={349}
             height={379}
             className="absolute bottom-[-30px] left-[160px] opacity-20"
-          />
+          /> */}
         </div>
       </div>
     </section>
