@@ -43,7 +43,7 @@ export default function Header() {
 
               {/* Text 1 */}
               <motion.p
-                className="text-purple-900 semibold-32 pb-1"
+                className="text-purple-900 semibold-40 pb-1"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
