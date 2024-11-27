@@ -61,7 +61,7 @@ export default function Feedback() {
             </div>
 
             <p className="regular-16 text-center mt-10">
-              "{FEEDBACK[currentIndex].content}
+              &quot;{FEEDBACK[currentIndex].content}&quot;
             </p>
           </div>
         </div>
