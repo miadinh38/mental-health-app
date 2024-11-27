@@ -12,7 +12,7 @@ export default function Values2() {
 
       <div className="flex flex-col flexCenter relative z-20 gap-36">
         <div className="flex flex-col fexCenter gap-3">
-          <p className="semibold-20 flex flexCenter text-center text-purple-700">
+          <p className="semibold-32 flex flexCenter text-center text-purple-700">
             Uplifting each other is at the heart of our mission
           </p>
           <p className="regular-18 flex mx-auto text-center w-2/3">

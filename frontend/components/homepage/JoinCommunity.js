@@ -8,7 +8,7 @@ export default function JoinCommunity() {
     <section className="relative h-[756px] pt-32 bg-purple-600 overflow-hidden">
       <div className="flex padding-container max-container">
         <div className="flex flex-col w-1/2 gap-5">
-          <p className="semibold-32 text-purple-50 pt-10">
+          <p className="semibold-40 text-purple-50 pt-10">
             Ready to Vent and Find your People?
           </p>
           <p className="regular-14 text-purple-50">

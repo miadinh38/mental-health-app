@@ -20,7 +20,7 @@ export default function Feedback() {
   };
 
   return (
-    <section className="h-[771px] relative">
+    <section className="h-[771px] relative pt-20">
       <div className="relative w-full h-full z-0">
         <Image
           src="/vector6.png"
@@ -37,8 +37,8 @@ export default function Feedback() {
           className="absolute bottom-0 left-0 opacity-30"
         />
 
-        <div className="flex flex-col flexCenter padding-container max-container relative z-10 pt-20">
-          <p className="text-purple-700 semibold-32">What Others Are Saying?</p>
+        <div className="flex flex-col flexCenter padding-container max-container relative z-10">
+          <p className="text-purple-700 semibold-40">What Others Are Saying?</p>
 
           <div className="mt-14 flex flex-col flexCenter w-2/3">
             <div className="flex flexCenter">

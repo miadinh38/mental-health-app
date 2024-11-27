@@ -17,8 +17,8 @@ export default function Values() {
       <div className="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-r from-white to-purple-300" />
 
       <div className="relative z-10 max-container padding-container">
-        <div className="border border-purple-100 w-1/3 flex flexCenter mx-auto mb-10"/>
-        <p className="flex flexCenter semibold-32 text-purple-700">
+        <div className="border border-purple-100 w-1/3 flex flexCenter mx-auto mb-10" />
+        <p className="flex flexCenter semibold-40 text-purple-700">
           Our values
         </p>
 
@@ -28,16 +28,9 @@ export default function Values() {
               key={index}
               className="flex flex-col flexCenter py-3 px-7 gap-2"
             >
-              <Image
-                src={value.icon}
-                width={20}
-                height={20}
-                alt="icon"
-              />
-              <p className="semibold-16 uppercase">
-                {value.title}
-              </p>
-              <p className="regular-14 text-center">
+              <div className="text-3xl">{value.icon}</div>{" "}
+              <p className="semibold-16 uppercase">{value.title}</p>
+              <p className="regular-14 text-center px-10 pt-2">
                 {value.description}
               </p>
             </li>
@@ -53,7 +46,6 @@ export default function Values() {
           />
         </div> */}
       </div>
-
     </section>
   );
 }
