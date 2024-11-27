@@ -62,7 +62,7 @@ export const VALUES2 = [
     img: "/img3.png",
     title: "Mental Wellness",
     description:
-      "“I can’t express how this web transformed my life in just one night. I had lost touch my happiness and my true self. Thanks to your site, I now have hope and a lear plan to follow”v",
+      "Take control of your mental health with resources that help you manage stress, build resilience, improve emotional well-being, and feel your best every day.",
   },
   {
     img: "/img4.png",
