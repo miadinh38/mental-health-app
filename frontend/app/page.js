@@ -1,4 +1,5 @@
 "use client";
+import Feedback from "../components/homepage/Feedback";
 import Header from "../components/homepage/Header";
 import JoinCommunity from "../components/homepage/JoinCommunity";
 import Values from "../components/homepage/Values";
@@ -11,6 +12,7 @@ export default function HomePage() {
       <Values />
       <Values2 />
       <JoinCommunity />
+      <Feedback />
     </>
   );
 }
